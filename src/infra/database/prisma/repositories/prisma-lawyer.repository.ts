@@ -14,4 +14,16 @@ export class PrismaLawyerRepository implements LawyerRepository {
       data: prismaLawyer,
     });
   }
+
+  async findByEmail(email: string): Promise<Lawyer | null> {
+    const prismaLawyer = await this.prismaService.lawyers.findUnique({
+      where: {
+        email,
+      },
+    });
+
+    if (!prismaLawyer) return null;
+
+    return PrismaLawyerMapper.toDomain(prismaLawyer);
+  }
 }

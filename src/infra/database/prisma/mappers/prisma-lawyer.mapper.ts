@@ -25,4 +25,30 @@ export class PrismaLawyerMapper {
       updatedAt,
     };
   }
+
+  static toDomain({
+    avatar,
+    createdAt,
+    email,
+    id,
+    name,
+    password,
+    telephone,
+    updatedAt,
+    username,
+  }: PrismaLawyer): Lawyer {
+    return new Lawyer(
+      {
+        avatar,
+        createdAt,
+        email,
+        name,
+        password,
+        telephone,
+        updatedAt,
+        username,
+      },
+      id,
+    );
+  }
 }
