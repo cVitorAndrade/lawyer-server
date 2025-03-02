@@ -26,4 +26,16 @@ export class PrismaLawyerRepository implements LawyerRepository {
 
     return PrismaLawyerMapper.toDomain(prismaLawyer);
   }
+
+  async findById(id: string): Promise<Lawyer | null> {
+    const prismaLawyer = await this.prismaService.lawyers.findUnique({
+      where: {
+        id,
+      },
+    });
+
+    if (!prismaLawyer) return null;
+
+    return PrismaLawyerMapper.toDomain(prismaLawyer);
+  }
 }
