@@ -4,6 +4,7 @@ import { CreateLawyerUseCase } from 'src/modules/lawyer/use-cases/create-lawyer.
 import { Public } from '../auth/decorators/isPublic';
 import { AuthenticatedRequestModel } from '../auth/models/authenticated-request.model';
 import { GetLawyerByIdUseCase } from 'src/modules/lawyer/use-cases/get-lawyer-by-id.use-case';
+import { LawyerViewModel } from './view-model/lawyer.view-model';
 
 @Controller('lawyer')
 export class LawyerController {
@@ -27,6 +28,6 @@ export class LawyerController {
       lawyerId: user.id,
     });
 
-    return lawyer;
+    return LawyerViewModel.toHttp(lawyer);
   }
 }
