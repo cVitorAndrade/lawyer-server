@@ -31,7 +31,7 @@ export class AuthController {
     const tokenExpiresInMs = 30 * 24 * 60 * 60 * 1000;
 
     response.cookie('access_token', access_token, {
-      httpOnly: true,
+      httpOnly: false,
       secure: false,
       sameSite: 'lax',
       maxAge: tokenExpiresInMs,
