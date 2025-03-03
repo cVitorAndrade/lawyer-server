@@ -1,6 +1,6 @@
 import { CaseUpload } from 'src/modules/case-upload/entities/case-upload.entity';
 
-export class CaseUploadviewModel {
+export class CaseUploadViewModel {
   static toHttp({
     id,
     caseId,

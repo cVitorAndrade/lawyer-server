@@ -11,7 +11,7 @@ import { UploadFileDto } from './dtos/upload-file.dto';
 import { UploadFileUseCase } from 'src/modules/upload/use-cases/upload-file.use-case';
 import { CreateCaseUploadUseCase } from 'src/modules/case-upload/use-cases/create-case-upload.use-case';
 import { AuthenticatedRequestModel } from '../auth/models/authenticated-request.model';
-import { CaseUploadviewModel } from './view-model/case-upload.view-model';
+import { CaseUploadViewModel } from './view-model/case-upload.view-model';
 
 @Controller('upload')
 export class UploadController {
@@ -38,6 +38,6 @@ export class UploadController {
       path: uploadedFile.path,
     });
 
-    return CaseUploadviewModel.toHttp(caseUpload);
+    return CaseUploadViewModel.toHttp(caseUpload);
   }
 }
