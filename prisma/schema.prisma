@@ -11,13 +11,58 @@ datasource db {
 }
 
 model Lawyers {
-  id        String   @id
-  name      String
-  username  String   @unique
-  email     String   @unique
-  password  String
-  avatar    String?
-  telephone String?
-  createdAt DateTime
-  updatedAt DateTime
+  id          String        @id
+  name        String
+  username    String        @unique
+  email       String        @unique
+  password    String
+  avatar      String?
+  telephone   String?
+  createdAt   DateTime
+  updatedAt   DateTime
+  Cases       Cases[]
+  CaseUploads CaseUploads[]
+}
+
+enum CaseType {
+  ADMINISTRATIVE @map("administrative")
+  JUDICIAL       @map("judicial")
+}
+
+enum CaseStatus {
+  IN_PROGRESS @map("in progress")
+  FINISHED    @map("finished")
+  CANCELED    @map("canceled")
+  PAUSED      @map("paused")
+}
+
+enum CasePriority {
+  LOW    @map("low")
+  MEDIUM @map("medium")
+  HIGH   @map("high")
+}
+
+model Cases {
+  id          String        @id
+  createdById String
+  createdBy   Lawyers       @relation(fields: [createdById], references: [id])
+  title       String
+  description String?
+  priority    CasePriority
+  type        CaseType
+  status      CaseStatus
+  createdAt   DateTime
+  updatedAt   DateTime
+  CaseUploads CaseUploads[]
+}
+
+model CaseUploads {
+  id           String   @id
+  caseId       String
+  case         Cases    @relation(fields: [caseId], references: [id])
+  uploadedById String
+  uploadedBy   Lawyers  @relation(fields: [uploadedById], references: [id])
+  path         String
+  fullpath     String
+  createdAt    DateTime
 }

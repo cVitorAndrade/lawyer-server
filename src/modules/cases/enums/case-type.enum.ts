@@ -1,0 +1,4 @@
+export enum CaseType {
+  ADMINISTRATIVE = 'ADMINISTRATIVE',
+  JUDICIAL = 'JUDICIAL',
+}

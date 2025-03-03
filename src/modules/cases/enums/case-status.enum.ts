@@ -1,0 +1,6 @@
+export enum CaseStatus {
+  IN_PROGRESS = 'IN_PROGRESS',
+  FINISHED = 'FINISHED',
+  CANCELED = 'CANCELED',
+  PAUSED = 'PAUSED',
+}
