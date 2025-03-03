@@ -62,7 +62,7 @@ model CaseUploads {
   case         Cases    @relation(fields: [caseId], references: [id])
   uploadedById String
   uploadedBy   Lawyers  @relation(fields: [uploadedById], references: [id])
-  path         String
-  fullpath     String
+  path         String   @unique
+  fullpath     String   @unique
   createdAt    DateTime
 }

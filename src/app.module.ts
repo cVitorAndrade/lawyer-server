@@ -5,10 +5,18 @@ import { AuthModule } from './infra/http/modules/auth/auth.module';
 import { APP_GUARD } from '@nestjs/core';
 import { JwtAuthGuard } from './infra/http/modules/auth/guards/jwt-auth.guard';
 import { UploadModule } from './infra/http/modules/upload/upload.module';
+import { StorageModule } from './infra/storage/storage.module';
 import { CaseModule } from './infra/http/modules/case/case.module';
 
 @Module({
-  imports: [LawyerModule, DatabaseModule, AuthModule, UploadModule, CaseModule],
+  imports: [
+    LawyerModule,
+    DatabaseModule,
+    AuthModule,
+    UploadModule,
+    StorageModule,
+    CaseModule,
+  ],
   providers: [
     {
       provide: APP_GUARD,
