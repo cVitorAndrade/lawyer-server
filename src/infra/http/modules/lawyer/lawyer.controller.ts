@@ -17,7 +17,7 @@ export class LawyerController {
   @Public()
   async createLawyer(@Body() body: CreateLawyerDto) {
     const lawyer = await this.createLawyerUseCase.execute(body);
-    return lawyer;
+    return LawyerViewModel.toHttp(lawyer);
   }
 
   @Get()
