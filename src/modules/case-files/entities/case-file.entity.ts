@@ -1,7 +1,7 @@
 import { randomUUID } from 'crypto';
 import { Replace } from 'src/utils/replace';
 
-interface CaseUploadProps {
+interface CaseFileProps {
   caseId: string;
   uploadedById: string;
   path: string;
@@ -9,12 +9,12 @@ interface CaseUploadProps {
   createdAt: Date;
 }
 
-export class CaseUpload {
+export class CaseFile {
   private _id: string;
-  private props: CaseUploadProps;
+  private props: CaseFileProps;
 
   constructor(
-    props: Replace<CaseUploadProps, { createdAt?: Date }>,
+    props: Replace<CaseFileProps, { createdAt?: Date }>,
     id?: string,
   ) {
     this.props = {

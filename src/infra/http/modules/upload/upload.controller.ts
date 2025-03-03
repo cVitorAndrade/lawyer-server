@@ -9,15 +9,15 @@ import {
 import { FileInterceptor } from '@nestjs/platform-express';
 import { UploadFileDto } from './dtos/upload-file.dto';
 import { UploadFileUseCase } from 'src/modules/upload/use-cases/upload-file.use-case';
-import { CreateCaseUploadUseCase } from 'src/modules/case-upload/use-cases/create-case-upload.use-case';
+import { CreateCaseFileUseCase } from 'src/modules/case-files/use-cases/create-case-file.use-case';
 import { AuthenticatedRequestModel } from '../auth/models/authenticated-request.model';
-import { CaseUploadViewModel } from './view-model/case-upload.view-model';
+import { CaseFileViewModel } from './view-model/case-upload.view-model';
 
 @Controller('upload')
 export class UploadController {
   constructor(
     private uploadFileUseCase: UploadFileUseCase,
-    private createCaseUploadUseCase: CreateCaseUploadUseCase,
+    private createCaseFileUseCase: CreateCaseFileUseCase,
   ) {}
 
   @Post('cases/:id')
@@ -31,13 +31,13 @@ export class UploadController {
     const path = `cases/${caseId}`;
     const uploadedFile = await this.uploadFileUseCase.execute({ file, path });
 
-    const caseUpload = await this.createCaseUploadUseCase.execute({
+    const caseFile = await this.createCaseFileUseCase.execute({
       caseId,
       uploadedById: user.id,
       fullpath: uploadedFile.fullPath,
       path: uploadedFile.path,
     });
 
-    return CaseUploadViewModel.toHttp(caseUpload);
+    return CaseFileViewModel.toHttp(caseFile);
   }
 }

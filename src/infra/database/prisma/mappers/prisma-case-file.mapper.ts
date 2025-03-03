@@ -1,20 +1,21 @@
+import { CaseFiles as PrismaCaseFile } from '@prisma/client';
 import { CaseFile } from 'src/modules/case-files/entities/case-file.entity';
 
-export class CaseFileViewModel {
-  static toHttp({
+export class PrismaCaseFileMapper {
+  static toPrisma({
     id,
-    caseId,
     uploadedById,
-    fullpath,
+    caseId,
     path,
+    fullpath,
     createdAt,
-  }: CaseFile) {
+  }: CaseFile): PrismaCaseFile {
     return {
       id,
-      caseId,
       uploadedById,
-      fullpath,
+      caseId,
       path,
+      fullpath,
       createdAt,
     };
   }
