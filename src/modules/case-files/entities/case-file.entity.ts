@@ -6,6 +6,9 @@ interface CaseFileProps {
   uploadedById: string;
   path: string;
   fullpath: string;
+  mimetype: string;
+  originalname: string;
+  size: number;
   createdAt: Date;
 }
 
@@ -42,6 +45,30 @@ export class CaseFile {
 
   set uploadedById(uploadedById: string) {
     this.props.uploadedById = uploadedById;
+  }
+
+  get mimetype(): string {
+    return this.props.mimetype;
+  }
+
+  set mimetype(mimetype: string) {
+    this.props.mimetype = mimetype;
+  }
+
+  get originalname(): string {
+    return this.props.originalname;
+  }
+
+  set originalname(originalname: string) {
+    this.props.originalname = originalname;
+  }
+
+  get size(): number {
+    return this.props.size;
+  }
+
+  set size(size: number) {
+    this.props.size = size;
   }
 
   get path(): string {

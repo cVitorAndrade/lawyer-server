@@ -8,6 +8,9 @@ export class PrismaCaseFileMapper {
     caseId,
     path,
     fullpath,
+    mimetype,
+    originalname,
+    size,
     createdAt,
   }: CaseFile): PrismaCaseFile {
     return {
@@ -16,6 +19,9 @@ export class PrismaCaseFileMapper {
       caseId,
       path,
       fullpath,
+      mimetype,
+      originalname,
+      size,
       createdAt,
     };
   }

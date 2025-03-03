@@ -11,16 +11,16 @@ datasource db {
 }
 
 model Lawyers {
-  id          String      @id
-  name        String
-  username    String      @unique
-  email       String      @unique
-  password    String
-  avatar      String?
-  telephone   String?
-  createdAt   DateTime
-  updatedAt   DateTime
-  Cases       Cases[]
+  id        String      @id
+  name      String
+  username  String      @unique
+  email     String      @unique
+  password  String
+  avatar    String?
+  telephone String?
+  createdAt DateTime
+  updatedAt DateTime
+  Cases     Cases[]
   CaseFiles CaseFiles[]
 }
 
@@ -53,7 +53,7 @@ model Cases {
   status      CaseStatus
   createdAt   DateTime
   updatedAt   DateTime
-  CaseFiles CaseFiles[]
+  CaseFiles   CaseFiles[]
 }
 
 model CaseFiles {
@@ -64,5 +64,8 @@ model CaseFiles {
   uploadedBy   Lawyers  @relation(fields: [uploadedById], references: [id])
   path         String   @unique
   fullpath     String   @unique
+  mimetype     String
+  originalname String
+  size         Int
   createdAt    DateTime
 }

@@ -36,6 +36,9 @@ export class UploadController {
       uploadedById: user.id,
       fullpath: uploadedFile.fullPath,
       path: uploadedFile.path,
+      mimetype: file.mimetype,
+      originalname: file.originalname,
+      size: file.size,
     });
 
     return CaseFileViewModel.toHttp(caseFile);

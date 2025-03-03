@@ -7,6 +7,9 @@ interface CreateCaseFileRequest {
   uploadedById: string;
   path: string;
   fullpath: string;
+  mimetype: string;
+  size: number;
+  originalname: string;
 }
 
 @Injectable()

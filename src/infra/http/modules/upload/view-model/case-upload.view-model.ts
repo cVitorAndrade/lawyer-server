@@ -7,6 +7,9 @@ export class CaseFileViewModel {
     uploadedById,
     fullpath,
     path,
+    mimetype,
+    originalname,
+    size,
     createdAt,
   }: CaseFile) {
     return {
@@ -15,6 +18,9 @@ export class CaseFileViewModel {
       uploadedById,
       fullpath,
       path,
+      mimetype,
+      originalname,
+      size,
       createdAt,
     };
   }
