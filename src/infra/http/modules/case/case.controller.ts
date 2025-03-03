@@ -2,6 +2,7 @@ import { Body, Controller, Post, Request } from '@nestjs/common';
 import { CreateCaseUseCase } from 'src/modules/cases/use-cases/create-case.use-case';
 import { AuthenticatedRequestModel } from '../auth/models/authenticated-request.model';
 import { CreateCaseDto } from './dtos/create-case.dto';
+import { CaseViewModel } from './view-model/case.view-model';
 
 @Controller('/case')
 export class CaseController {
@@ -19,6 +20,6 @@ export class CaseController {
       ...body,
     });
 
-    return caseEntity;
+    return CaseViewModel.toHttp(caseEntity);
   }
 }

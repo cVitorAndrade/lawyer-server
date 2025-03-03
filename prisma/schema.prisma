@@ -25,21 +25,21 @@ model Lawyers {
 }
 
 enum CaseType {
-  ADMINISTRATIVE @map("administrative")
-  JUDICIAL       @map("judicial")
+  ADMINISTRATIVE
+  JUDICIAL
 }
 
 enum CaseStatus {
-  IN_PROGRESS @map("in progress")
-  FINISHED    @map("finished")
-  CANCELED    @map("canceled")
-  PAUSED      @map("paused")
+  IN_PROGRESS
+  FINISHED
+  CANCELED
+  PAUSED
 }
 
 enum CasePriority {
-  LOW    @map("low")
-  MEDIUM @map("medium")
-  HIGH   @map("high")
+  LOW
+  MEDIUM
+  HIGH
 }
 
 model Cases {
