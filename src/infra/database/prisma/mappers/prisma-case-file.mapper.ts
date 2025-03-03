@@ -25,4 +25,30 @@ export class PrismaCaseFileMapper {
       createdAt,
     };
   }
+
+  static toDomain({
+    id,
+    caseId,
+    uploadedById,
+    fullpath,
+    path,
+    mimetype,
+    originalname,
+    size,
+    createdAt,
+  }: PrismaCaseFile): CaseFile {
+    return new CaseFile(
+      {
+        caseId,
+        uploadedById,
+        fullpath,
+        path,
+        mimetype,
+        originalname,
+        size,
+        createdAt,
+      },
+      id,
+    );
+  }
 }

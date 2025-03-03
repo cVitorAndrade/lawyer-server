@@ -11,7 +11,7 @@ import { UploadFileDto } from './dtos/upload-file.dto';
 import { UploadFileUseCase } from 'src/modules/upload/use-cases/upload-file.use-case';
 import { CreateCaseFileUseCase } from 'src/modules/case-files/use-cases/create-case-file.use-case';
 import { AuthenticatedRequestModel } from '../auth/models/authenticated-request.model';
-import { CaseFileViewModel } from './view-model/case-upload.view-model';
+import { CaseFileViewModel } from '../../case-file/view-model/case-file.view-model';
 
 @Controller('upload')
 export class UploadController {

@@ -4,7 +4,7 @@ import { AuthenticatedRequestModel } from '../auth/models/authenticated-request.
 import { CreateCaseDto } from './dtos/create-case.dto';
 import { CaseViewModel } from './view-model/case.view-model';
 
-@Controller('/case')
+@Controller('case')
 export class CaseController {
   constructor(private createCaseUseCase: CreateCaseUseCase) {}
 
