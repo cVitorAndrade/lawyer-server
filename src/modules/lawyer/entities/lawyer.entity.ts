@@ -91,11 +91,15 @@ export class Lawyer {
     this.props.telephone = telephone;
   }
 
-  get createdAt(): Date {
+  get updatedAt(): Date {
     return this.props.createdAt;
   }
 
-  get updatedAt(): Date {
+  set updatedAt(updatedAt: Date) {
+    this.props.updatedAt = updatedAt;
+  }
+
+  get createdAt(): Date {
     return this.props.createdAt;
   }
 }

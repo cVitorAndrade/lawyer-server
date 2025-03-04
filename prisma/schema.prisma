@@ -19,7 +19,7 @@ model Lawyers {
   avatar    String?
   telephone String?
   createdAt DateTime
-  updatedAt DateTime
+  updatedAt DateTime    @updatedAt
   Cases     Cases[]
   CaseFiles CaseFiles[]
 }
@@ -52,7 +52,7 @@ model Cases {
   type        CaseType
   status      CaseStatus
   createdAt   DateTime
-  updatedAt   DateTime
+  updatedAt   DateTime     @updatedAt
   CaseFiles   CaseFiles[]
 }
 

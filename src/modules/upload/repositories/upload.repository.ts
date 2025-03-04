@@ -6,4 +6,6 @@ export abstract class UploadRepository {
     file: UploadFileDto,
     path: string,
   ): Promise<UploadResponseDto>;
+  abstract updateLawyerAvatar(file: UploadFileDto): Promise<UploadResponseDto>;
+  abstract deleteLawyerAvatar(path: string): Promise<void>;
 }

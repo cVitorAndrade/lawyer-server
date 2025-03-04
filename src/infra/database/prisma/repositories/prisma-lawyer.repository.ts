@@ -38,4 +38,14 @@ export class PrismaLawyerRepository implements LawyerRepository {
 
     return PrismaLawyerMapper.toDomain(prismaLawyer);
   }
+
+  async update(lawyer: Lawyer): Promise<void> {
+    const prismaLawyer = PrismaLawyerMapper.toPrisma(lawyer);
+    await this.prismaService.lawyers.update({
+      data: prismaLawyer,
+      where: {
+        id: lawyer.id,
+      },
+    });
+  }
 }

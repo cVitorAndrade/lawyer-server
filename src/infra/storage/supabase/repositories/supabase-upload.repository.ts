@@ -23,4 +23,22 @@ export class SupabaseUploadRepository implements UploadRepository {
 
     return data;
   }
+
+  async updateLawyerAvatar(file: UploadFileDto): Promise<UploadResponseDto> {
+    const supabase = this.supabaseService.getClient;
+    const filename = `${file.originalname}_${randomUUID()}`;
+
+    const { data, error } = await supabase.storage
+      .from('avatars')
+      .upload(filename, file.buffer);
+
+    if (error) throw new Error(error.message);
+
+    return data;
+  }
+
+  async deleteLawyerAvatar(path: string): Promise<void> {
+    const supabase = this.supabaseService.getClient;
+    await supabase.storage.from('avatars').remove([path]);
+  }
 }

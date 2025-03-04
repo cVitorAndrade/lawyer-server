@@ -7,7 +7,7 @@ import { JwtAuthGuard } from './infra/http/modules/auth/guards/jwt-auth.guard';
 import { UploadModule } from './infra/http/modules/upload/upload.module';
 import { StorageModule } from './infra/storage/storage.module';
 import { CaseModule } from './infra/http/modules/case/case.module';
-import { CaseFileModule } from './infra/http/case-file/case-file.module';
+import { CaseFileModule } from './infra/http/modules/case-file/case-file.module';
 
 @Module({
   imports: [
