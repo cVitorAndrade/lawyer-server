@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   Patch,
   Post,
@@ -19,6 +20,7 @@ import { UpdateLawyerUseCase } from 'src/modules/lawyer/use-cases/update-lawyer.
 import { UpdateLawyerAvatarUseCase } from 'src/modules/lawyer/use-cases/update-lawyer-avatar.use-case';
 import { UploadFileDto } from '../upload/dtos/upload-file.dto';
 import { FileInterceptor } from '@nestjs/platform-express';
+import { DeleteLawyerAvatarImageUseCase } from 'src/modules/lawyer/use-cases/delete-lawyer-avatar-image.use-case';
 
 @Controller('lawyer')
 export class LawyerController {
@@ -27,6 +29,7 @@ export class LawyerController {
     private getLawyerByIdUseCase: GetLawyerByIdUseCase,
     private updateLawyerUseCase: UpdateLawyerUseCase,
     private updateLawyerAvatarUseCase: UpdateLawyerAvatarUseCase,
+    private deleteAvatarImageUseCase: DeleteLawyerAvatarImageUseCase,
   ) {}
 
   @Post()
@@ -81,6 +84,15 @@ export class LawyerController {
       lawyerId: user.id,
     });
 
+    return LawyerViewModel.toHttp(lawyer);
+  }
+
+  @Delete('avatar')
+  async deleteAvatar(@Request() request: AuthenticatedRequestModel) {
+    const { user } = request;
+    const lawyer = await this.deleteAvatarImageUseCase.execute({
+      lawyerId: user.id,
+    });
     return LawyerViewModel.toHttp(lawyer);
   }
 }

@@ -26,5 +26,7 @@ export class DeleteLawyerAvatarImageUseCase {
       lawyerId,
       avatar: lawyer.avatar,
     });
+
+    return lawyer;
   }
 }
