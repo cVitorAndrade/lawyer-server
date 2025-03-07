@@ -48,4 +48,11 @@ export class PrismaLawyerRepository implements LawyerRepository {
       },
     });
   }
+
+  async getAllLawyers(): Promise<Lawyer[]> {
+    const allPrismaLawyers = await this.prismaService.lawyers.findMany();
+    return allPrismaLawyers.map((prismaLawyer) =>
+      PrismaLawyerMapper.toDomain(prismaLawyer),
+    );
+  }
 }

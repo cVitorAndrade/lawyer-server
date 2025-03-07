@@ -7,6 +7,7 @@ import { UpdateLawyerUseCase } from 'src/modules/lawyer/use-cases/update-lawyer.
 import { UpdateLawyerAvatarUseCase } from 'src/modules/lawyer/use-cases/update-lawyer-avatar.use-case';
 import { StorageModule } from 'src/infra/storage/storage.module';
 import { DeleteLawyerAvatarImageUseCase } from 'src/modules/lawyer/use-cases/delete-lawyer-avatar-image.use-case';
+import { GetAllLawyersUseCase } from 'src/modules/lawyer/use-cases/get-all-lawyers.use-case';
 
 @Module({
   imports: [DatabaseModule, StorageModule],
@@ -17,6 +18,7 @@ import { DeleteLawyerAvatarImageUseCase } from 'src/modules/lawyer/use-cases/del
     UpdateLawyerUseCase,
     UpdateLawyerAvatarUseCase,
     DeleteLawyerAvatarImageUseCase,
+    GetAllLawyersUseCase,
   ],
 })
 export class LawyerModule {}

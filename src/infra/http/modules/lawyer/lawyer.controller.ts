@@ -21,6 +21,7 @@ import { UpdateLawyerAvatarUseCase } from 'src/modules/lawyer/use-cases/update-l
 import { UploadFileDto } from '../upload/dtos/upload-file.dto';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { DeleteLawyerAvatarImageUseCase } from 'src/modules/lawyer/use-cases/delete-lawyer-avatar-image.use-case';
+import { GetAllLawyersUseCase } from 'src/modules/lawyer/use-cases/get-all-lawyers.use-case';
 
 @Controller('lawyer')
 export class LawyerController {
@@ -30,6 +31,7 @@ export class LawyerController {
     private updateLawyerUseCase: UpdateLawyerUseCase,
     private updateLawyerAvatarUseCase: UpdateLawyerAvatarUseCase,
     private deleteAvatarImageUseCase: DeleteLawyerAvatarImageUseCase,
+    private getAllLawyersUseCase: GetAllLawyersUseCase,
   ) {}
 
   @Post()
@@ -48,6 +50,12 @@ export class LawyerController {
     });
 
     return LawyerViewModel.toHttp(lawyer);
+  }
+
+  @Get('all')
+  async getAllLawyers() {
+    const lawyers = await this.getAllLawyersUseCase.execute();
+    return lawyers.map((lawyer) => LawyerViewModel.toHttp(lawyer));
   }
 
   @Patch()
