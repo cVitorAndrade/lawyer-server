@@ -2,6 +2,7 @@ import { Lawyer } from 'src/modules/lawyer/entities/lawyer.entity';
 
 export class LawyerViewModel {
   static toHttp({
+    id,
     email,
     name,
     username,
@@ -11,6 +12,7 @@ export class LawyerViewModel {
     updatedAt,
   }: Lawyer) {
     return {
+      id,
       email,
       name,
       username,
