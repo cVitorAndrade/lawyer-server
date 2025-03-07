@@ -11,17 +11,18 @@ datasource db {
 }
 
 model Lawyers {
-  id        String      @id
-  name      String
-  username  String      @unique
-  email     String      @unique
-  password  String
-  avatar    String?
-  telephone String?
-  createdAt DateTime
-  updatedAt DateTime    @updatedAt
-  Cases     Cases[]
-  CaseFiles CaseFiles[]
+  id          String        @id
+  name        String
+  username    String        @unique
+  email       String        @unique
+  password    String
+  avatar      String?
+  telephone   String?
+  createdAt   DateTime
+  updatedAt   DateTime      @updatedAt
+  Cases       Cases[]
+  CaseFiles   CaseFiles[]
+  CaseLawyers CaseLawyers[]
 }
 
 enum CaseType {
@@ -43,17 +44,18 @@ enum CasePriority {
 }
 
 model Cases {
-  id          String       @id
+  id          String        @id
   createdById String
-  createdBy   Lawyers      @relation(fields: [createdById], references: [id])
+  createdBy   Lawyers       @relation(fields: [createdById], references: [id])
   title       String
   description String?
   priority    CasePriority
   type        CaseType
   status      CaseStatus
   createdAt   DateTime
-  updatedAt   DateTime     @updatedAt
+  updatedAt   DateTime      @updatedAt
   CaseFiles   CaseFiles[]
+  CaseLawyers CaseLawyers[]
 }
 
 model CaseFiles {
@@ -68,4 +70,13 @@ model CaseFiles {
   originalname String
   size         Int
   createdAt    DateTime
+}
+
+model CaseLawyers {
+  id        String  @unique
+  caseId    String
+  case      Cases   @relation(fields: [caseId], references: [id])
+  lawyerId  String
+  lawyer    Lawyers @relation(fields: [lawyerId], references: [id])
+  createdAt String
 }
