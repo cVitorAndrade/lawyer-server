@@ -78,5 +78,5 @@ model CaseLawyers {
   case      Cases   @relation(fields: [caseId], references: [id])
   lawyerId  String
   lawyer    Lawyers @relation(fields: [lawyerId], references: [id])
-  createdAt String
+  createdAt DateTime
 }
