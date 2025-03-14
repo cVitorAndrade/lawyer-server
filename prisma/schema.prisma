@@ -110,3 +110,12 @@ model Invites {
   createdAt   DateTime
   respondedAt DateTime?
 }
+
+model Clients {
+  id        String   @unique
+  name      String
+  email     String   @unique
+  telephone String
+  createdAt DateTime
+  updatedAt DateTime
+}
