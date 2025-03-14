@@ -16,8 +16,8 @@ import { CaseFileViewModel } from '../case-file/view-model/case-file.view-model'
 @Controller('upload')
 export class UploadController {
   constructor(
-    private uploadFileUseCase: UploadFileUseCase,
-    private createCaseFileUseCase: CreateCaseFileUseCase,
+    private readonly uploadFileUseCase: UploadFileUseCase,
+    private readonly createCaseFileUseCase: CreateCaseFileUseCase,
   ) {}
 
   @Post('cases/:id')

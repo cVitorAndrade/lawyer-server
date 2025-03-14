@@ -4,12 +4,14 @@ import { AuthenticatedRequestModel } from '../auth/models/authenticated-request.
 import { CreateCaseDto } from './dtos/create-case.dto';
 import { CaseViewModel } from './view-model/case.view-model';
 import { GetAllCasesByLawyerIdUseCase } from 'src/modules/cases/use-cases/get-all-cases-by-lawyer-id.use-case';
+import { GetAllCasesUseCase } from 'src/modules/cases/use-cases/get-all-cases.use-case';
 
 @Controller('case')
 export class CaseController {
   constructor(
-    private createCaseUseCase: CreateCaseUseCase,
-    private getAllCasesByLawyerIdUseCase: GetAllCasesByLawyerIdUseCase,
+    private readonly createCaseUseCase: CreateCaseUseCase,
+    private readonly getAllCasesByLawyerIdUseCase: GetAllCasesByLawyerIdUseCase,
+    private readonly getAllCasesUseCase: GetAllCasesUseCase,
   ) {}
 
   @Post()
@@ -33,6 +35,13 @@ export class CaseController {
     const cases = await this.getAllCasesByLawyerIdUseCase.execute({
       lawyerId: user.id,
     });
+
+    return cases.map((caseEntity) => CaseViewModel.toHttp(caseEntity));
+  }
+
+  @Get('all')
+  async getAllCases() {
+    const cases = await this.getAllCasesUseCase.execute();
 
     return cases.map((caseEntity) => CaseViewModel.toHttp(caseEntity));
   }

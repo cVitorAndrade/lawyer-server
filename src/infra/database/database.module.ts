@@ -6,6 +6,12 @@ import { PrismaCaseRepository } from './prisma/repositories/prisma-case.reposito
 import { CaseRepository } from 'src/modules/cases/repositories/case.repository';
 import { CaseFileRepository } from 'src/modules/case-files/repositories/case-file.repository';
 import { PrismaCaseFileRepository } from './prisma/repositories/prisma-case-file.repository';
+import { CaseLawyerRepository } from 'src/modules/case-lawyer/repositories/case-lawyer.repository';
+import { PrismaCaseLawyerRepository } from './prisma/repositories/prisma-case-lawyer.repository';
+import { NotificationRepository } from 'src/modules/notification/repositories/notification.repository';
+import { PrismaNotificationRepository } from './prisma/repositories/prisma-notification.repository';
+import { InviteRepository } from 'src/modules/invite/repositories/invite.repository';
+import { PrismaInviteRepository } from './prisma/repositories/prisma-invite.repository';
 
 @Module({
   providers: [
@@ -22,7 +28,26 @@ import { PrismaCaseFileRepository } from './prisma/repositories/prisma-case-file
       provide: CaseFileRepository,
       useClass: PrismaCaseFileRepository,
     },
+    {
+      provide: CaseLawyerRepository,
+      useClass: PrismaCaseLawyerRepository,
+    },
+    {
+      provide: NotificationRepository,
+      useClass: PrismaNotificationRepository,
+    },
+    {
+      provide: InviteRepository,
+      useClass: PrismaInviteRepository,
+    },
   ],
-  exports: [LawyerRepository, CaseRepository, CaseFileRepository],
+  exports: [
+    LawyerRepository,
+    CaseRepository,
+    CaseFileRepository,
+    CaseLawyerRepository,
+    NotificationRepository,
+    InviteRepository,
+  ],
 })
 export class DatabaseModule {}

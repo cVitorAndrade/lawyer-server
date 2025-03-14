@@ -15,6 +15,13 @@ export class PrismaCaseRepository implements CaseRepository {
     });
   }
 
+  async getAllCases(): Promise<Case[]> {
+    const prismaCases = await this.prismaService.cases.findMany();
+    return prismaCases.map((prismaCase) =>
+      PrismaCaseMapper.toDomain(prismaCase),
+    );
+  }
+
   async getAllCasesByLawyerId(lawyerId: string): Promise<Case[]> {
     const prismaCases = await this.prismaService.cases.findMany({
       where: {

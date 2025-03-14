@@ -8,6 +8,9 @@ import { UploadModule } from './infra/http/modules/upload/upload.module';
 import { StorageModule } from './infra/storage/storage.module';
 import { CaseModule } from './infra/http/modules/case/case.module';
 import { CaseFileModule } from './infra/http/modules/case-file/case-file.module';
+import { CaseLawyerModule } from './infra/http/modules/case-lawyer/case-lawyer.module';
+import { InviteModule } from './infra/http/modules/invite/invite.module';
+import { NotificationModule } from './infra/http/modules/notification/notification.module';
 
 @Module({
   imports: [
@@ -18,6 +21,9 @@ import { CaseFileModule } from './infra/http/modules/case-file/case-file.module'
     StorageModule,
     CaseModule,
     CaseFileModule,
+    CaseLawyerModule,
+    InviteModule,
+    NotificationModule,
   ],
   providers: [
     {

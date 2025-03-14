@@ -11,18 +11,23 @@ datasource db {
 }
 
 model Lawyers {
-  id          String        @id
-  name        String
-  username    String        @unique
-  email       String        @unique
-  password    String
-  avatar      String?
-  telephone   String?
-  createdAt   DateTime
-  updatedAt   DateTime      @updatedAt
-  Cases       Cases[]
-  CaseFiles   CaseFiles[]
-  CaseLawyers CaseLawyers[]
+  id        String   @id
+  name      String
+  username  String   @unique
+  email     String   @unique
+  password  String
+  avatar    String?
+  telephone String?
+  createdAt DateTime
+  updatedAt DateTime @updatedAt
+
+  Cases         Cases[]
+  CaseFiles     CaseFiles[]
+  CaseLawyers   CaseLawyers[]
+  Notifications Notifications[]
+
+  invitesSent     Invites[] @relation("InvitedBy")
+  invitesReceived Invites[] @relation("Invited")
 }
 
 enum CaseType {
@@ -56,6 +61,7 @@ model Cases {
   updatedAt   DateTime      @updatedAt
   CaseFiles   CaseFiles[]
   CaseLawyers CaseLawyers[]
+  Invites     Invites[]
 }
 
 model CaseFiles {
@@ -73,10 +79,34 @@ model CaseFiles {
 }
 
 model CaseLawyers {
-  id        String  @unique
+  id        String   @unique
   caseId    String
-  case      Cases   @relation(fields: [caseId], references: [id])
+  case      Cases    @relation(fields: [caseId], references: [id])
   lawyerId  String
-  lawyer    Lawyers @relation(fields: [lawyerId], references: [id])
+  lawyer    Lawyers  @relation(fields: [lawyerId], references: [id])
   createdAt DateTime
+}
+
+model Notifications {
+  id        String   @unique
+  lawyer    Lawyers  @relation(fields: [lawyerId], references: [id])
+  lawyerId  String
+  type      String
+  message   String
+  details   Json
+  isRead    Boolean
+  createdAt DateTime
+}
+
+model Invites {
+  id          String    @id
+  case        Cases     @relation(fields: [caseId], references: [id])
+  caseId      String
+  invited     Lawyers   @relation("Invited", fields: [invitedId], references: [id])
+  invitedById String
+  invitedBy   Lawyers   @relation("InvitedBy", fields: [invitedById], references: [id])
+  invitedId   String
+  status      String
+  createdAt   DateTime
+  respondedAt DateTime?
 }
