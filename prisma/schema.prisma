@@ -119,3 +119,17 @@ model Clients {
   createdAt DateTime
   updatedAt DateTime
 }
+
+model Address {
+  id           String   @unique
+  ownerId      String
+  postalCode   String
+  country      String
+  state        String
+  city         String
+  street       String
+  neighborhood String
+  number       String
+  createdAt    DateTime
+  updatedAt    DateTime
+}
