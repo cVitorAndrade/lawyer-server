@@ -130,6 +130,7 @@ model Address {
   street       String
   neighborhood String
   number       String
+  complements  String
   createdAt    DateTime
   updatedAt    DateTime
 }
