@@ -120,7 +120,7 @@ model Clients {
   updatedAt DateTime
 }
 
-model Address {
+model Addresses {
   id           String   @unique
   ownerId      String
   postalCode   String
@@ -130,7 +130,7 @@ model Address {
   street       String
   neighborhood String
   number       String
-  complements  String
+  complement   String
   createdAt    DateTime
   updatedAt    DateTime
 }
