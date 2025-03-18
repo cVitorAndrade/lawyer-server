@@ -123,6 +123,7 @@ model Clients {
 model Addresses {
   id           String   @unique
   ownerId      String
+  name         String
   postalCode   String
   country      String
   state        String
