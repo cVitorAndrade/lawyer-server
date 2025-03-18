@@ -28,6 +28,7 @@ model Lawyers {
 
   invitesSent     Invites[] @relation("InvitedBy")
   invitesReceived Invites[] @relation("Invited")
+  Clients         Clients[]
 }
 
 enum CaseType {
@@ -112,13 +113,15 @@ model Invites {
 }
 
 model Clients {
-  id        String   @unique
-  name      String
-  email     String   @unique
-  telephone String
-  birthDate DateTime
-  createdAt DateTime
-  updatedAt DateTime
+  id          String   @unique
+  createdBy   Lawyers  @relation(fields: [createdById], references: [id])
+  createdById String
+  name        String
+  email       String   @unique
+  telephone   String
+  birthDate   DateTime
+  createdAt   DateTime
+  updatedAt   DateTime
 }
 
 model Addresses {
