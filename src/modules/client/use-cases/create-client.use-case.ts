@@ -3,6 +3,7 @@ import { ClientRepository } from '../repositories/client.repository';
 import { Client } from '../entities/client.entity';
 
 interface CreateClientRequest {
+  createdById: string;
   name: string;
   email: string;
   telephone: string;
