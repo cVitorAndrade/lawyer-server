@@ -116,6 +116,7 @@ model Clients {
   name      String
   email     String   @unique
   telephone String
+  birthDate DateTime
   createdAt DateTime
   updatedAt DateTime
 }
