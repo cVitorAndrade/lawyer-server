@@ -4,6 +4,7 @@ import { Client } from 'src/modules/client/entities/client.entity';
 export class PrismaClientMapper {
   static toPrisma({
     id,
+    createdById,
     name,
     email,
     telephone,
@@ -13,6 +14,7 @@ export class PrismaClientMapper {
   }: Client): PrismaClient {
     return {
       id,
+      createdById,
       name,
       email,
       telephone,
