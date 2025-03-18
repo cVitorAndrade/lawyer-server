@@ -2,6 +2,7 @@ import { randomUUID } from 'crypto';
 import { Replace } from 'src/utils/replace';
 
 interface ClientProps {
+  createdById: string;
   name: string;
   email: string;
   telephone: string;
@@ -37,6 +38,14 @@ export class Client {
 
   set name(name: string) {
     this.props.name = name;
+  }
+
+  get createdById(): string {
+    return this.props.createdById;
+  }
+
+  set createdById(createdById: string) {
+    this.props.createdById = createdById;
   }
 
   get email(): string {
