@@ -12,6 +12,7 @@ import { CaseLawyerModule } from './infra/http/modules/case-lawyer/case-lawyer.m
 import { InviteModule } from './infra/http/modules/invite/invite.module';
 import { NotificationModule } from './infra/http/modules/notification/notification.module';
 import { ClientModule } from './infra/http/modules/client/client.module';
+import { CaseClientModule } from './infra/http/modules/case-client/case-client.module';
 
 @Module({
   imports: [
@@ -26,6 +27,7 @@ import { ClientModule } from './infra/http/modules/client/client.module';
     InviteModule,
     NotificationModule,
     ClientModule,
+    CaseClientModule,
   ],
   providers: [
     {
