@@ -63,6 +63,7 @@ model Cases {
   CaseFiles   CaseFiles[]
   CaseLawyers CaseLawyers[]
   Invites     Invites[]
+  CaseClients CaseClients[]
 }
 
 model CaseFiles {
@@ -113,15 +114,16 @@ model Invites {
 }
 
 model Clients {
-  id          String   @unique
-  createdBy   Lawyers  @relation(fields: [createdById], references: [id])
+  id          String        @unique
+  createdBy   Lawyers       @relation(fields: [createdById], references: [id])
   createdById String
   name        String
-  email       String   @unique
+  email       String        @unique
   telephone   String
   birthDate   DateTime
   createdAt   DateTime
   updatedAt   DateTime
+  CaseClients CaseClients[]
 }
 
 model Addresses {
@@ -138,4 +140,13 @@ model Addresses {
   complement   String
   createdAt    DateTime
   updatedAt    DateTime
+}
+
+model CaseClients {
+  id        String   @id
+  client    Clients  @relation(fields: [clientsId], references: [id])
+  case      Cases    @relation(fields: [casesId], references: [id])
+  casesId   String
+  createdAt DateTime
+  clientsId String
 }
