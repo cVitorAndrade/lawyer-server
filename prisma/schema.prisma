@@ -144,9 +144,9 @@ model Addresses {
 
 model CaseClients {
   id        String   @id
-  client    Clients  @relation(fields: [clientsId], references: [id])
-  case      Cases    @relation(fields: [casesId], references: [id])
-  casesId   String
+  client    Clients  @relation(fields: [clientId], references: [id])
+  case      Cases    @relation(fields: [caseId], references: [id])
+  caseId   String
   createdAt DateTime
-  clientsId String
+  clientId String
 }
