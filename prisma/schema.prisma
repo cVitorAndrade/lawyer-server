@@ -137,7 +137,7 @@ model Addresses {
   street       String
   neighborhood String
   number       String
-  complement   String
+  complement   String?
   createdAt    DateTime
   updatedAt    DateTime
 }
