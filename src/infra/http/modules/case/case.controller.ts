@@ -3,7 +3,6 @@ import { CreateCaseUseCase } from 'src/modules/cases/use-cases/create-case.use-c
 import { AuthenticatedRequestModel } from '../auth/models/authenticated-request.model';
 import { CreateCaseDto } from './dtos/create-case.dto';
 import { CaseViewModel } from './view-model/case.view-model';
-import { GetAllCasesByLawyerIdUseCase } from 'src/modules/cases/use-cases/get-all-cases-by-lawyer-id.use-case';
 import { GetAllCasesUseCase } from 'src/modules/cases/use-cases/get-all-cases.use-case';
 import { GetAllCaseLawyersUseCase } from 'src/modules/case-lawyer/use-cases/get-all-case-lawyers.use-case';
 import { GetAllCaseClientsUseCase } from 'src/modules/case-client/use-cases/get-all-case-clients.use-case';
@@ -11,13 +10,14 @@ import { LawyerViewModel } from '../lawyer/view-model/lawyer.view-model';
 import { ClientViewModel } from '../client/view-model/client.view-model';
 import { GetLawyerByIdUseCase } from 'src/modules/lawyer/use-cases/get-lawyer-by-id.use-case';
 import { CreateCaseLawyerUseCase } from 'src/modules/case-lawyer/use-cases/create-case-lawyer.use-case';
+import { GetAllLawyerCasesUseCase } from 'src/modules/case-lawyer/use-cases/get-all-lawyer-cases.use-case';
 
 @Controller('case')
 export class CaseController {
   constructor(
     private readonly createCaseUseCase: CreateCaseUseCase,
-    private readonly getAllCasesByLawyerIdUseCase: GetAllCasesByLawyerIdUseCase,
     private readonly getAllCasesUseCase: GetAllCasesUseCase,
+    private readonly getAllLawyerCasesUseCase: GetAllLawyerCasesUseCase,
     private readonly createCaseLawyerUseCase: CreateCaseLawyerUseCase,
     private readonly getLawyerByIdUseCase: GetLawyerByIdUseCase,
     private readonly getAllCaseLawyersUseCase: GetAllCaseLawyersUseCase,
@@ -47,7 +47,8 @@ export class CaseController {
   @Get()
   async getAllCasesByLawyerId(@Request() request: AuthenticatedRequestModel) {
     const { user } = request;
-    const cases = await this.getAllCasesByLawyerIdUseCase.execute({
+
+    const cases = await this.getAllLawyerCasesUseCase.execute({
       lawyerId: user.id,
     });
 
