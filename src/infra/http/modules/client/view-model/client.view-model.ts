@@ -1,6 +1,6 @@
 import { Client } from 'src/modules/client/entities/client.entity';
 
-export class ClienViewModel {
+export class ClientViewModel {
   static toHttp({
     id,
     createdById,

@@ -23,4 +23,28 @@ export class PrismaClientMapper {
       updatedAt,
     };
   }
+
+  static toDomain({
+    id,
+    createdById,
+    email,
+    name,
+    telephone,
+    birthDate,
+    createdAt,
+    updatedAt,
+  }: PrismaClient): Client {
+    return new Client(
+      {
+        createdById,
+        email,
+        name,
+        telephone,
+        birthDate,
+        createdAt,
+        updatedAt,
+      },
+      id,
+    );
+  }
 }

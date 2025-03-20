@@ -13,6 +13,7 @@ import { InviteModule } from './infra/http/modules/invite/invite.module';
 import { NotificationModule } from './infra/http/modules/notification/notification.module';
 import { ClientModule } from './infra/http/modules/client/client.module';
 import { CaseClientModule } from './infra/http/modules/case-client/case-client.module';
+import { AddressModule } from './infra/http/modules/address/address.module';
 
 @Module({
   imports: [
@@ -28,6 +29,7 @@ import { CaseClientModule } from './infra/http/modules/case-client/case-client.m
     NotificationModule,
     ClientModule,
     CaseClientModule,
+    AddressModule,
   ],
   providers: [
     {

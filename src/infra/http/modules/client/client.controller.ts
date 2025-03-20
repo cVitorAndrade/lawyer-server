@@ -2,7 +2,7 @@ import { Body, Controller, Post, Request } from '@nestjs/common';
 import { AuthenticatedRequestModel } from '../auth/models/authenticated-request.model';
 import { CreateClientDto } from './dtos/create-client.dto';
 import { CreateClientUseCase } from 'src/modules/client/use-cases/create-client.use-case';
-import { ClienViewModel } from './view-model/client.view-model';
+import { ClientViewModel } from './view-model/client.view-model';
 
 @Controller('client')
 export class ClientController {
@@ -24,6 +24,6 @@ export class ClientController {
       telephone,
     });
 
-    return ClienViewModel.toHttp(client);
+    return ClientViewModel.toHttp(client);
   }
 }

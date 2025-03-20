@@ -16,6 +16,8 @@ import { ClientRepository } from 'src/modules/client/repositories/client.reposit
 import { PrismaClientRepository } from './prisma/repositories/prisma-client.repository';
 import { CaseClientRepository } from 'src/modules/case-client/repositories/case-client.repository';
 import { PrismaCaseClientRepository } from './prisma/repositories/prisma-case-client.repository';
+import { AddressRepository } from 'src/modules/address/repositories/address.repository';
+import { PrismaAddressRepository } from './prisma/repositories/prisma-address.repository';
 
 @Module({
   providers: [
@@ -52,6 +54,10 @@ import { PrismaCaseClientRepository } from './prisma/repositories/prisma-case-cl
       provide: CaseClientRepository,
       useClass: PrismaCaseClientRepository,
     },
+    {
+      provide: AddressRepository,
+      useClass: PrismaAddressRepository,
+    },
   ],
   exports: [
     LawyerRepository,
@@ -62,6 +68,7 @@ import { PrismaCaseClientRepository } from './prisma/repositories/prisma-case-cl
     InviteRepository,
     ClientRepository,
     CaseClientRepository,
+    AddressRepository,
   ],
 })
 export class DatabaseModule {}
