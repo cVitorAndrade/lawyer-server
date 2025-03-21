@@ -26,4 +26,13 @@ export class PrismaCaseFileRepository implements CaseFileRepository {
       PrismaCaseFileMapper.toDomain(caseFile),
     );
   }
+
+  async getCaseFileById(id: string): Promise<CaseFile | null> {
+    const prismaCaseFile = await this.prismaService.caseFiles.findUnique({
+      where: { id },
+    });
+    if (!prismaCaseFile) return null;
+
+    return PrismaCaseFileMapper.toDomain(prismaCaseFile);
+  }
 }

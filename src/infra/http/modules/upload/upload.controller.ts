@@ -35,7 +35,7 @@ export class UploadController {
       caseId,
       uploadedById: user.id,
       fullpath: uploadedFile.fullPath,
-      path: uploadedFile.path,
+      path: `${caseId}/${uploadedFile.path}`,
       mimetype: file.mimetype,
       originalname: file.originalname,
       size: file.size,

@@ -4,6 +4,7 @@ import { UploadRepository } from 'src/modules/upload/repositories/upload.reposit
 import { SupabaseService } from '../supabase.service';
 import { UploadResponseDto } from 'src/modules/upload/dtos/upload-response.dto';
 import { randomUUID } from 'crypto';
+import { DownloadFileResult } from 'src/modules/case-files/types/download-file-result.type';
 
 @Injectable()
 export class SupabaseUploadRepository implements UploadRepository {
@@ -17,7 +18,9 @@ export class SupabaseUploadRepository implements UploadRepository {
 
     const { data, error } = await supabase.storage
       .from(path)
-      .upload(filename, file.buffer);
+      .upload(filename, file.buffer, {
+        contentType: file.mimetype,
+      });
 
     if (error) throw new Error(error.message);
 
@@ -40,5 +43,21 @@ export class SupabaseUploadRepository implements UploadRepository {
   async deleteLawyerAvatar(path: string): Promise<void> {
     const supabase = this.supabaseService.getClient;
     await supabase.storage.from('avatars').remove([path]);
+  }
+
+  async downloadCaseFile(path: string): Promise<DownloadFileResult> {
+    const supabase = this.supabaseService.getClient;
+    const { data } = await supabase.storage.from('cases').download(path);
+
+    const arrayBuffer = await data.arrayBuffer();
+    const fileBuffer = Buffer.from(arrayBuffer);
+    const mimeType = data.type;
+    const filename = path.split('/').pop() || 'unknown-file';
+
+    return {
+      fileBuffer,
+      filename,
+      mimeType,
+    };
   }
 }
