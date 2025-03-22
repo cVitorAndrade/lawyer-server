@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post, Request } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Request } from '@nestjs/common';
 import { CreateCaseUseCase } from 'src/modules/case/use-cases/create-case.use-case';
 import { AuthenticatedRequestModel } from '../auth/models/authenticated-request.model';
 import { CreateCaseDto } from './dtos/create-case.dto';
@@ -11,6 +11,7 @@ import { ClientViewModel } from '../client/view-model/client.view-model';
 import { GetLawyerByIdUseCase } from 'src/modules/lawyer/use-cases/get-lawyer-by-id.use-case';
 import { CreateCaseLawyerUseCase } from 'src/modules/case-lawyer/use-cases/create-case-lawyer.use-case';
 import { GetAllLawyerCasesUseCase } from 'src/modules/case-lawyer/use-cases/get-all-lawyer-cases.use-case';
+import { GetCaseByIdUseCase } from 'src/modules/case/use-cases/get-case-by-id.use-case';
 
 @Controller('case')
 export class CaseController {
@@ -22,6 +23,7 @@ export class CaseController {
     private readonly getLawyerByIdUseCase: GetLawyerByIdUseCase,
     private readonly getAllCaseLawyersUseCase: GetAllCaseLawyersUseCase,
     private readonly getAllCaseClientsUseCase: GetAllCaseClientsUseCase,
+    private readonly getCaseByIdUseCase: GetCaseByIdUseCase,
   ) {}
 
   @Post()
@@ -70,6 +72,24 @@ export class CaseController {
         };
       }),
     );
+  }
+
+  @Get(':id')
+  async getCaseById(@Param('id') id: string) {
+    const caseEntity = await this.getCaseByIdUseCase.execute({ caseId: id });
+
+    const [createdBy, lawyers, clients] = await Promise.all([
+      this.getLawyerByIdUseCase.execute({ lawyerId: caseEntity.createdById }),
+      this.getAllCaseLawyersUseCase.execute({ caseId: caseEntity.id }),
+      this.getAllCaseClientsUseCase.execute({ caseId: caseEntity.id }),
+    ]);
+
+    return {
+      ...CaseViewModel.toHttp(caseEntity),
+      createdBy: LawyerViewModel.toHttp(createdBy),
+      lawyers: lawyers.map(LawyerViewModel.toHttp),
+      clients: clients.map(ClientViewModel.toHttp),
+    };
   }
 
   @Get('all')
