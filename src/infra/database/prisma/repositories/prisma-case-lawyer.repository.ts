@@ -4,7 +4,7 @@ import { CaseLawyerRepository } from 'src/modules/case-lawyer/repositories/case-
 import { CaseLawyer } from 'src/modules/case-lawyer/entities/case-lawyer.entity';
 import { PrismaCaseLawyerMapper } from '../mappers/prisma-case-lawyer.mapper';
 import { PrismaLawyerMapper } from '../mappers/prisma-lawyer.mapper';
-import { Case } from 'src/modules/cases/entities/case.entity';
+import { Case } from 'src/modules/case/entities/case.entity';
 import { Lawyer } from 'src/modules/lawyer/entities/lawyer.entity';
 import { PrismaCaseMapper } from '../mappers/prisma-case.mapper';
 

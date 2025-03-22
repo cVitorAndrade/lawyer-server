@@ -1,7 +1,7 @@
 import { IsEnum, IsNotEmpty, IsString } from 'class-validator';
-import { CasePriority } from 'src/modules/cases/enums/case-priority.enum';
-import { CaseStatus } from 'src/modules/cases/enums/case-status.enum';
-import { CaseType } from 'src/modules/cases/enums/case-type.enum';
+import { CasePriority } from 'src/modules/case/enums/case-priority.enum';
+import { CaseStatus } from 'src/modules/case/enums/case-status.enum';
+import { CaseType } from 'src/modules/case/enums/case-type.enum';
 
 export class CreateCaseDto {
   @IsNotEmpty()

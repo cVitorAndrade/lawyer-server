@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
-import { CaseRepository } from 'src/modules/cases/repositories/case.repository';
+import { CaseRepository } from 'src/modules/case/repositories/case.repository';
 import { PrismaService } from '../prisma.service';
-import { Case } from 'src/modules/cases/entities/case.entity';
+import { Case } from 'src/modules/case/entities/case.entity';
 import { PrismaCaseMapper } from '../mappers/prisma-case.mapper';
 
 @Injectable()

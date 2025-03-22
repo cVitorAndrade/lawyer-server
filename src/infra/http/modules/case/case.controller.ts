@@ -1,9 +1,9 @@
 import { Body, Controller, Get, Post, Request } from '@nestjs/common';
-import { CreateCaseUseCase } from 'src/modules/cases/use-cases/create-case.use-case';
+import { CreateCaseUseCase } from 'src/modules/case/use-cases/create-case.use-case';
 import { AuthenticatedRequestModel } from '../auth/models/authenticated-request.model';
 import { CreateCaseDto } from './dtos/create-case.dto';
 import { CaseViewModel } from './view-model/case.view-model';
-import { GetAllCasesUseCase } from 'src/modules/cases/use-cases/get-all-cases.use-case';
+import { GetAllCasesUseCase } from 'src/modules/case/use-cases/get-all-cases.use-case';
 import { GetAllCaseLawyersUseCase } from 'src/modules/case-lawyer/use-cases/get-all-case-lawyers.use-case';
 import { GetAllCaseClientsUseCase } from 'src/modules/case-client/use-cases/get-all-case-clients.use-case';
 import { LawyerViewModel } from '../lawyer/view-model/lawyer.view-model';

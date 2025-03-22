@@ -1,4 +1,4 @@
-import { Case } from 'src/modules/cases/entities/case.entity';
+import { Case } from 'src/modules/case/entities/case.entity';
 
 export class CaseViewModel {
   static toHttp({
