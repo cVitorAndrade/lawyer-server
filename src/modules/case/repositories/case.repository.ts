@@ -4,4 +4,5 @@ export abstract class CaseRepository {
   abstract create(caseEntity: Case): Promise<void>;
   abstract getAllCases(): Promise<Case[]>;
   abstract getAllCasesByLawyerId(lawyerId: string): Promise<Case[]>;
+  abstract getCaseById(id: string): Promise<Case | null>;
 }

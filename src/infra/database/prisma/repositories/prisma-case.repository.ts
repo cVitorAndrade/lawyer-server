@@ -33,4 +33,13 @@ export class PrismaCaseRepository implements CaseRepository {
       PrismaCaseMapper.toDomain(prismaCase),
     );
   }
+
+  async getCaseById(id: string): Promise<Case | null> {
+    const prismaCase = await this.prismaService.cases.findUnique({
+      where: { id },
+    });
+    if (!prismaCase) return null;
+
+    return PrismaCaseMapper.toDomain(prismaCase);
+  }
 }
