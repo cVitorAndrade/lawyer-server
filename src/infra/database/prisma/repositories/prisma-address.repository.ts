@@ -14,4 +14,15 @@ export class PrismaAddressRepository implements AddressRepository {
       data: prismaAddress,
     });
   }
+
+  async getAddressByOwnerId(clientId: string): Promise<Address | null> {
+    const prismaAddress = await this.prismaService.addresses.findFirst({
+      where: {
+        ownerId: clientId,
+      },
+    });
+    if (!prismaAddress) return null;
+
+    return PrismaAddressMapper.toDomain(prismaAddress);
+  }
 }

@@ -1,3 +1,4 @@
+import { Addresses as PrismaAddress } from '@prisma/client';
 import { Address } from 'src/modules/address/entitites/address.entity';
 
 export class PrismaAddressMapper {
@@ -15,7 +16,7 @@ export class PrismaAddressMapper {
     complement,
     createdAt,
     updatedAt,
-  }: Address) {
+  }: Address): PrismaAddress {
     return {
       id,
       ownerId,
@@ -31,5 +32,39 @@ export class PrismaAddressMapper {
       createdAt,
       updatedAt,
     };
+  }
+
+  static toDomain({
+    id,
+    ownerId,
+    name,
+    postalCode,
+    country,
+    state,
+    city,
+    neighborhood,
+    street,
+    number,
+    complement,
+    createdAt,
+    updatedAt,
+  }: PrismaAddress): Address {
+    return new Address(
+      {
+        ownerId,
+        name,
+        postalCode,
+        country,
+        state,
+        city,
+        neighborhood,
+        street,
+        number,
+        complement,
+        createdAt,
+        updatedAt,
+      },
+      id,
+    );
   }
 }
