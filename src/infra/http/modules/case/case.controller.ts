@@ -12,6 +12,8 @@ import { GetLawyerByIdUseCase } from 'src/modules/lawyer/use-cases/get-lawyer-by
 import { CreateCaseLawyerUseCase } from 'src/modules/case-lawyer/use-cases/create-case-lawyer.use-case';
 import { GetAllLawyerCasesUseCase } from 'src/modules/case-lawyer/use-cases/get-all-lawyer-cases.use-case';
 import { GetCaseByIdUseCase } from 'src/modules/case/use-cases/get-case-by-id.use-case';
+import { GetAddressByOwnerIdUseCase } from 'src/modules/address/use-cases/get-address-by-owner-id.use-case';
+import { AddressViewModel } from '../address/view-model/address.view-model';
 
 @Controller('case')
 export class CaseController {
@@ -24,6 +26,7 @@ export class CaseController {
     private readonly getAllCaseLawyersUseCase: GetAllCaseLawyersUseCase,
     private readonly getAllCaseClientsUseCase: GetAllCaseClientsUseCase,
     private readonly getCaseByIdUseCase: GetCaseByIdUseCase,
+    private readonly getAddressByOwnerIdUseCase: GetAddressByOwnerIdUseCase,
   ) {}
 
   @Post()
@@ -88,7 +91,17 @@ export class CaseController {
       ...CaseViewModel.toHttp(caseEntity),
       createdBy: LawyerViewModel.toHttp(createdBy),
       lawyers: lawyers.map(LawyerViewModel.toHttp),
-      clients: clients.map(ClientViewModel.toHttp),
+      clients: await Promise.all(
+        clients.map(async (client) => {
+          const address = await this.getAddressByOwnerIdUseCase.execute({
+            ownerId: client.id,
+          });
+          return {
+            ...ClientViewModel.toHttp(client),
+            address: AddressViewModel.toHttp(address),
+          };
+        }),
+      ),
     };
   }
 
