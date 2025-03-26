@@ -26,9 +26,11 @@ model Lawyers {
   CaseLawyers   CaseLawyers[]
   Notifications Notifications[]
 
-  invitesSent     Invites[] @relation("InvitedBy")
-  invitesReceived Invites[] @relation("Invited")
-  Clients         Clients[]
+  invitesSent        Invites[]            @relation("InvitedBy")
+  invitesReceived    Invites[]            @relation("Invited")
+  Clients            Clients[]
+  DocumentModel      DocumentModels[]
+  DocumentModelFiles DocumentModelFiles[]
 }
 
 enum CaseType {
@@ -149,4 +151,29 @@ model CaseClients {
   caseId    String
   createdAt DateTime
   clientId  String
+}
+
+model DocumentModels {
+  id          String               @id
+  ownerId     String
+  lawyer      Lawyers              @relation(fields: [ownerId], references: [id])
+  title       String
+  description String?
+  color       String
+  createdAt   DateTime
+  files       DocumentModelFiles[]
+}
+
+model DocumentModelFiles {
+  id              String         @id
+  documentModelId String
+  documentModel   DocumentModels @relation(fields: [documentModelId], references: [id], onDelete: Cascade)
+  uploadedById    String
+  uploadedBy      Lawyers        @relation(fields: [uploadedById], references: [id])
+  path            String         @unique
+  fullpath        String         @unique
+  mimetype        String
+  originalname    String
+  size            Int
+  createdAt       DateTime
 }

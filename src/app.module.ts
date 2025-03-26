@@ -14,6 +14,7 @@ import { NotificationModule } from './infra/http/modules/notification/notificati
 import { ClientModule } from './infra/http/modules/client/client.module';
 import { CaseClientModule } from './infra/http/modules/case-client/case-client.module';
 import { AddressModule } from './infra/http/modules/address/address.module';
+import { DocumentModelModule } from './infra/http/modules/document-model/document-model.module';
 
 @Module({
   imports: [
@@ -30,6 +31,7 @@ import { AddressModule } from './infra/http/modules/address/address.module';
     ClientModule,
     CaseClientModule,
     AddressModule,
+    DocumentModelModule,
   ],
   providers: [
     {

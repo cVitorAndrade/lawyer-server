@@ -4,9 +4,14 @@ import { UploadFileUseCase } from 'src/modules/upload/use-cases/upload-file.use-
 import { StorageModule } from 'src/infra/storage/storage.module';
 import { CreateCaseFileUseCase } from 'src/modules/case-files/use-cases/create-case-file.use-case';
 import { DatabaseModule } from 'src/infra/database/database.module';
+import { CreateDocumentModelFileUseCase } from 'src/modules/document-model-file/use-cases/create-document-model-file.use-case';
 
 @Module({
-  providers: [UploadFileUseCase, CreateCaseFileUseCase],
+  providers: [
+    UploadFileUseCase,
+    CreateCaseFileUseCase,
+    CreateDocumentModelFileUseCase,
+  ],
   controllers: [UploadController],
   imports: [StorageModule, DatabaseModule],
 })
