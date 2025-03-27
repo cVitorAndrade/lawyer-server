@@ -39,4 +39,10 @@ export class PrismaDocumentModelRepository implements DocumentModelRepository {
 
     return PrismaDocumentModelMapper.toDomain(prismaDocumentModel);
   }
+
+  async delete(id: string): Promise<void> {
+    await this.prismaService.documentModels.delete({
+      where: { id },
+    });
+  }
 }
