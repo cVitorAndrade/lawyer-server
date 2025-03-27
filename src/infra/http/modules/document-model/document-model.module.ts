@@ -5,6 +5,7 @@ import { DatabaseModule } from 'src/infra/database/database.module';
 import { GetLawyerDocumentModelUseCase } from 'src/modules/document-model/use-cases/get-lawyer-document-models.use-case';
 import { GetDocumentModelFilesUseCase } from 'src/modules/document-model-file/use-cases/get-document-model-files.use-case';
 import { GetDocumentModelByIdUseCase } from 'src/modules/document-model/use-cases/get-document-model-by-id.use-case';
+import { DeleteDocumentModelUseCase } from 'src/modules/document-model/use-cases/delete-document-model.use-case';
 
 @Module({
   providers: [
@@ -12,6 +13,7 @@ import { GetDocumentModelByIdUseCase } from 'src/modules/document-model/use-case
     GetLawyerDocumentModelUseCase,
     GetDocumentModelFilesUseCase,
     GetDocumentModelByIdUseCase,
+    DeleteDocumentModelUseCase,
   ],
   controllers: [DocumentModelController],
   imports: [DatabaseModule],
