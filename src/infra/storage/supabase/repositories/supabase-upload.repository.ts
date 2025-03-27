@@ -60,4 +60,12 @@ export class SupabaseUploadRepository implements UploadRepository {
       mimeType,
     };
   }
+
+  async deleteFolder(bucket: string, folder: string): Promise<void> {
+    const supabase = this.supabaseService.getClient;
+    const { data: files } = await supabase.storage.from(bucket).list(folder);
+
+    const filesToRemove = files.map((file) => `${folder}/${file.name}`);
+    await supabase.storage.from(bucket).remove(filesToRemove);
+  }
 }

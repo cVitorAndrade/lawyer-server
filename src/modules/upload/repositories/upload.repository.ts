@@ -10,4 +10,5 @@ export abstract class UploadRepository {
   abstract updateLawyerAvatar(file: UploadFileDto): Promise<UploadResponseDto>;
   abstract deleteLawyerAvatar(path: string): Promise<void>;
   abstract downloadCaseFile(path: string): Promise<DownloadFileResult>;
+  abstract deleteFolder(bucket: string, folder: string): Promise<void>;
 }

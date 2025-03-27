@@ -6,6 +6,8 @@ import { GetLawyerDocumentModelUseCase } from 'src/modules/document-model/use-ca
 import { GetDocumentModelFilesUseCase } from 'src/modules/document-model-file/use-cases/get-document-model-files.use-case';
 import { GetDocumentModelByIdUseCase } from 'src/modules/document-model/use-cases/get-document-model-by-id.use-case';
 import { DeleteDocumentModelUseCase } from 'src/modules/document-model/use-cases/delete-document-model.use-case';
+import { DeleteDocumentModelFilesUseCase } from 'src/modules/document-model-file/use-cases/delete-document-model-files.use-case';
+import { StorageModule } from 'src/infra/storage/storage.module';
 
 @Module({
   providers: [
@@ -14,8 +16,9 @@ import { DeleteDocumentModelUseCase } from 'src/modules/document-model/use-cases
     GetDocumentModelFilesUseCase,
     GetDocumentModelByIdUseCase,
     DeleteDocumentModelUseCase,
+    DeleteDocumentModelFilesUseCase,
   ],
   controllers: [DocumentModelController],
-  imports: [DatabaseModule],
+  imports: [StorageModule, DatabaseModule],
 })
 export class DocumentModelModule {}

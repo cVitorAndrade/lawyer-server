@@ -13,9 +13,10 @@ import { AuthenticatedRequestModel } from '../auth/models/authenticated-request.
 import { DocumentModelViewModel } from './view-model/document-model.view-model';
 import { GetLawyerDocumentModelUseCase } from 'src/modules/document-model/use-cases/get-lawyer-document-models.use-case';
 import { GetDocumentModelFilesUseCase } from 'src/modules/document-model-file/use-cases/get-document-model-files.use-case';
-import { DocumentModelFileViewModel } from '../document-file-model/view-model/document-model-file.view-model';
+import { DocumentModelFileViewModel } from '../document-model-file/view-model/document-model-file.view-model';
 import { GetDocumentModelByIdUseCase } from 'src/modules/document-model/use-cases/get-document-model-by-id.use-case';
 import { DeleteDocumentModelUseCase } from 'src/modules/document-model/use-cases/delete-document-model.use-case';
+import { DeleteDocumentModelFilesUseCase } from 'src/modules/document-model-file/use-cases/delete-document-model-files.use-case';
 
 @Controller('document-model')
 export class DocumentModelController {
@@ -25,6 +26,7 @@ export class DocumentModelController {
     private readonly getDocumentModelFilesUseCase: GetDocumentModelFilesUseCase,
     private readonly getDocumentModelByIdUseCase: GetDocumentModelByIdUseCase,
     private readonly deleteDocumentModelUseCase: DeleteDocumentModelUseCase,
+    private readonly deleteDocumentModelFilesUseCase: DeleteDocumentModelFilesUseCase,
   ) {}
 
   @Post()
@@ -84,9 +86,12 @@ export class DocumentModelController {
   ) {
     const { user } = request;
 
+    
     await this.deleteDocumentModelUseCase.execute({
       documentModelId,
       lawyerId: user.id,
     });
+
+    await this.deleteDocumentModelFilesUseCase.execute({ documentModelId });
   }
 }

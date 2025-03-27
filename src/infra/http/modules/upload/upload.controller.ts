@@ -13,7 +13,7 @@ import { CreateCaseFileUseCase } from 'src/modules/case-files/use-cases/create-c
 import { AuthenticatedRequestModel } from '../auth/models/authenticated-request.model';
 import { CaseFileViewModel } from '../case-file/view-model/case-file.view-model';
 import { CreateDocumentModelFileUseCase } from 'src/modules/document-model-file/use-cases/create-document-model-file.use-case';
-import { DocumentModelFileViewModel } from '../document-file-model/view-model/document-model-file.view-model';
+import { DocumentModelFileViewModel } from '../document-model-file/view-model/document-model-file.view-model';
 
 @Controller('upload')
 export class UploadController {
