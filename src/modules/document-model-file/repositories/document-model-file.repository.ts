@@ -5,4 +5,5 @@ export abstract class DocumentModelFileRepository {
   abstract getDocumentModelFiles(
     documentModelId: string,
   ): Promise<DocumentModelFile[]>;
+  abstract findById(id: string): Promise<DocumentModelFile | null>;
 }

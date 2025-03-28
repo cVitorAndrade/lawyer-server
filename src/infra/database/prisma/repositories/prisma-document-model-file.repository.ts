@@ -27,4 +27,15 @@ export class PrismaDocumentModelFileRepository
       });
     return prismaDocumentModelFiles.map(PrismaDocumentModelFileMapper.toDomain);
   }
+
+  async findById(id: string): Promise<DocumentModelFile | null> {
+    const prismaDocumentModelFile =
+      await this.prismaService.documentModelFiles.findUnique({
+        where: { id },
+      });
+
+    if (!prismaDocumentModelFile) return null;
+
+    return PrismaDocumentModelFileMapper.toDomain(prismaDocumentModelFile);
+  }
 }

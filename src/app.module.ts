@@ -15,6 +15,7 @@ import { ClientModule } from './infra/http/modules/client/client.module';
 import { CaseClientModule } from './infra/http/modules/case-client/case-client.module';
 import { AddressModule } from './infra/http/modules/address/address.module';
 import { DocumentModelModule } from './infra/http/modules/document-model/document-model.module';
+import { DocumentModelFileModule } from './infra/http/modules/document-model-file/document-model-file.module';
 
 @Module({
   imports: [
@@ -32,6 +33,7 @@ import { DocumentModelModule } from './infra/http/modules/document-model/documen
     CaseClientModule,
     AddressModule,
     DocumentModelModule,
+    DocumentModelFileModule,
   ],
   providers: [
     {
