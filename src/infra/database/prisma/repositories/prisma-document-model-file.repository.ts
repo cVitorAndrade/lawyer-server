@@ -38,4 +38,10 @@ export class PrismaDocumentModelFileRepository
 
     return PrismaDocumentModelFileMapper.toDomain(prismaDocumentModelFile);
   }
+
+  async delete(id: string): Promise<void> {
+    await this.prismaService.documentModelFiles.delete({
+      where: { id },
+    });
+  }
 }

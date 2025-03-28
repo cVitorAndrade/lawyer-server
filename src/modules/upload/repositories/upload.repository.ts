@@ -15,4 +15,5 @@ export abstract class UploadRepository {
     bucket: string,
     path: string,
   ): Promise<DownloadFileResult>;
+  abstract deleteFile(bucket: string, path: string): Promise<void>;
 }

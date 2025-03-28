@@ -87,4 +87,9 @@ export class SupabaseUploadRepository implements UploadRepository {
     const filesToRemove = files.map((file) => `${folder}/${file.name}`);
     await supabase.storage.from(bucket).remove(filesToRemove);
   }
+
+  async deleteFile(bucket: string, path: string): Promise<void> {
+    const supabase = this.supabaseService.getClient;
+    await supabase.storage.from(bucket).remove([path]);
+  }
 }

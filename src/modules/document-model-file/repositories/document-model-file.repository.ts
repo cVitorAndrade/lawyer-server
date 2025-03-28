@@ -6,4 +6,5 @@ export abstract class DocumentModelFileRepository {
     documentModelId: string,
   ): Promise<DocumentModelFile[]>;
   abstract findById(id: string): Promise<DocumentModelFile | null>;
+  abstract delete(id: string): Promise<void>;
 }
