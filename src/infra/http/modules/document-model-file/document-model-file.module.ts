@@ -4,11 +4,13 @@ import { GetDocumentModelFileByIdUseCase } from 'src/modules/document-model-file
 import { DatabaseModule } from 'src/infra/database/database.module';
 import { DownloadDocumentModelFileUseCase } from 'src/modules/document-model-file/use-cases/download-document-model-file.use-case';
 import { StorageModule } from 'src/infra/storage/storage.module';
+import { DeleteDocumenModelFileByIdUseCase } from 'src/modules/document-model-file/use-cases/delete-document-model-file-by-id.use-case';
 
 @Module({
   providers: [
     GetDocumentModelFileByIdUseCase,
     DownloadDocumentModelFileUseCase,
+    DeleteDocumenModelFileByIdUseCase,
   ],
   controllers: [DocumentModelFileController],
   imports: [DatabaseModule, StorageModule],
