@@ -1,4 +1,4 @@
-import { Controller, Get, Param, Res } from '@nestjs/common';
+import { Controller, Delete, Get, Param, Res } from '@nestjs/common';
 import { GetAllCaseFilesUseCase } from 'src/modules/case-file/use-cases/get-all-case-files.use-case';
 import { CaseFileViewModel } from './view-model/case-file.view-model';
 import { GetCaseFileByIdUseCase } from 'src/modules/case-file/use-cases/get-case-file-by-id.use-case';
@@ -6,6 +6,7 @@ import { DownloadCaseFileUseCase } from 'src/modules/case-file/use-cases/downloa
 import { Response } from 'express';
 import { GetLawyerByIdUseCase } from 'src/modules/lawyer/use-cases/get-lawyer-by-id.use-case';
 import { LawyerViewModel } from '../lawyer/view-model/lawyer.view-model';
+import { DeleteCaseFileUseCase } from 'src/modules/case-file/use-cases/delete-case-file-use-case';
 
 @Controller('case-file')
 export class CaseFileController {
@@ -14,6 +15,7 @@ export class CaseFileController {
     private readonly getLawyerByIdUseCase: GetLawyerByIdUseCase,
     private readonly getCaseFileByIdUseCase: GetCaseFileByIdUseCase,
     private readonly downloadCaseFileUseCase: DownloadCaseFileUseCase,
+    private readonly deleteCaseFileUseCase: DeleteCaseFileUseCase,
   ) {}
 
   @Get('case/:id')
@@ -51,5 +53,10 @@ export class CaseFileController {
     });
 
     return res.send(fileBuffer);
+  }
+
+  @Delete(':id')
+  async deleteCaseFile(@Param('id') caseFileId: string) {
+    await this.deleteCaseFileUseCase.execute({ caseFileId });
   }
 }

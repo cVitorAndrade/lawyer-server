@@ -6,6 +6,7 @@ import { GetCaseFileByIdUseCase } from 'src/modules/case-file/use-cases/get-case
 import { DownloadCaseFileUseCase } from 'src/modules/case-file/use-cases/download-case-file.use-case';
 import { StorageModule } from 'src/infra/storage/storage.module';
 import { GetLawyerByIdUseCase } from 'src/modules/lawyer/use-cases/get-lawyer-by-id.use-case';
+import { DeleteCaseFileUseCase } from 'src/modules/case-file/use-cases/delete-case-file-use-case';
 
 @Module({
   providers: [
@@ -13,6 +14,7 @@ import { GetLawyerByIdUseCase } from 'src/modules/lawyer/use-cases/get-lawyer-by
     GetCaseFileByIdUseCase,
     DownloadCaseFileUseCase,
     GetLawyerByIdUseCase,
+    DeleteCaseFileUseCase,
   ],
   imports: [DatabaseModule, StorageModule],
   controllers: [CaseFileController],

@@ -35,4 +35,10 @@ export class PrismaCaseFileRepository implements CaseFileRepository {
 
     return PrismaCaseFileMapper.toDomain(prismaCaseFile);
   }
+
+  async delete(id: string): Promise<void> {
+    await this.prismaService.caseFiles.delete({
+      where: { id },
+    });
+  }
 }
