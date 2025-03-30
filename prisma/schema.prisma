@@ -60,6 +60,7 @@ model Cases {
   priority    CasePriority
   type        CaseType
   status      CaseStatus
+  isDeleted   Boolean
   createdAt   DateTime
   updatedAt   DateTime      @updatedAt
   CaseFiles   CaseFiles[]

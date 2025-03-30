@@ -13,6 +13,7 @@ export class PrismaCaseMapper {
     priority,
     status,
     type,
+    isDeleted,
     createdAt,
     updatedAt,
   }: Case): PrismaCase {
@@ -24,6 +25,7 @@ export class PrismaCaseMapper {
       priority,
       status,
       type,
+      isDeleted,
       createdAt,
       updatedAt,
     };
@@ -37,6 +39,7 @@ export class PrismaCaseMapper {
     priority,
     status,
     type,
+    isDeleted,
     createdAt,
     updatedAt,
   }: PrismaCase): Case {
@@ -48,6 +51,7 @@ export class PrismaCaseMapper {
         priority: priority as CasePriority,
         status: status as CaseStatus,
         type: type as CaseType,
+        isDeleted,
         createdAt,
         updatedAt,
       },
