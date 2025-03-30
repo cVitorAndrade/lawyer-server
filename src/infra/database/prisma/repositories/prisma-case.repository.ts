@@ -16,7 +16,9 @@ export class PrismaCaseRepository implements CaseRepository {
   }
 
   async getAllCases(): Promise<Case[]> {
-    const prismaCases = await this.prismaService.cases.findMany();
+    const prismaCases = await this.prismaService.cases.findMany({
+      where: { isDeleted: false },
+    });
     return prismaCases.map((prismaCase) =>
       PrismaCaseMapper.toDomain(prismaCase),
     );
@@ -26,6 +28,7 @@ export class PrismaCaseRepository implements CaseRepository {
     const prismaCases = await this.prismaService.cases.findMany({
       where: {
         createdById: lawyerId,
+        isDeleted: false,
       },
     });
 
@@ -36,7 +39,7 @@ export class PrismaCaseRepository implements CaseRepository {
 
   async getCaseById(id: string): Promise<Case | null> {
     const prismaCase = await this.prismaService.cases.findUnique({
-      where: { id },
+      where: { id, isDeleted: false },
     });
     if (!prismaCase) return null;
 
