@@ -38,11 +38,18 @@ export class PrismaCaseRepository implements CaseRepository {
   }
 
   async getCaseById(id: string): Promise<Case | null> {
-    const prismaCase = await this.prismaService.cases.findUnique({
+    const prismaCase = await this.prismaService.cases.findFirst({
       where: { id, isDeleted: false },
     });
     if (!prismaCase) return null;
 
     return PrismaCaseMapper.toDomain(prismaCase);
+  }
+
+  async delete(id: string): Promise<void> {
+    await this.prismaService.cases.update({
+      data: { isDeleted: true },
+      where: { id },
+    });
   }
 }

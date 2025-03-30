@@ -12,6 +12,6 @@ export class GetAllLawyerCasesUseCase {
   async execute({ lawyerId }: GetAllLawyerCasesCasesRequest) {
     const lawyerCases =
       await this.caseLawyerRepository.getAllLawyerCases(lawyerId);
-    return lawyerCases;
+    return lawyerCases.filter(({ isDeleted }) => !isDeleted);
   }
 }

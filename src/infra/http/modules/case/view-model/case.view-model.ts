@@ -9,6 +9,7 @@ export class CaseViewModel {
     priority,
     status,
     type,
+    isDeleted,
     createdAt,
     updatedAt,
   }: Case) {
@@ -20,6 +21,7 @@ export class CaseViewModel {
       priority,
       status,
       type,
+      isDeleted,
       createdAt,
       updatedAt,
     };

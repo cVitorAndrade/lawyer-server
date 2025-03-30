@@ -10,6 +10,7 @@ import { CreateCaseLawyerUseCase } from 'src/modules/case-lawyer/use-cases/creat
 import { GetAllLawyerCasesUseCase } from 'src/modules/case-lawyer/use-cases/get-all-lawyer-cases.use-case';
 import { GetCaseByIdUseCase } from 'src/modules/case/use-cases/get-case-by-id.use-case';
 import { GetAddressByOwnerIdUseCase } from 'src/modules/address/use-cases/get-address-by-owner-id.use-case';
+import { DeleteCaseByIdUseCase } from 'src/modules/case/use-cases/delete-case-by-id.use-case';
 
 @Module({
   imports: [DatabaseModule],
@@ -24,6 +25,7 @@ import { GetAddressByOwnerIdUseCase } from 'src/modules/address/use-cases/get-ad
     GetAllLawyerCasesUseCase,
     GetCaseByIdUseCase,
     GetAddressByOwnerIdUseCase,
+    DeleteCaseByIdUseCase,
   ],
 })
 export class CaseModule {}

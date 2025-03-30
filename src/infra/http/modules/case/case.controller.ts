@@ -1,4 +1,12 @@
-import { Body, Controller, Get, Param, Post, Request } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  Request,
+} from '@nestjs/common';
 import { CreateCaseUseCase } from 'src/modules/case/use-cases/create-case.use-case';
 import { AuthenticatedRequestModel } from '../auth/models/authenticated-request.model';
 import { CreateCaseDto } from './dtos/create-case.dto';
@@ -14,6 +22,7 @@ import { GetAllLawyerCasesUseCase } from 'src/modules/case-lawyer/use-cases/get-
 import { GetCaseByIdUseCase } from 'src/modules/case/use-cases/get-case-by-id.use-case';
 import { GetAddressByOwnerIdUseCase } from 'src/modules/address/use-cases/get-address-by-owner-id.use-case';
 import { AddressViewModel } from '../address/view-model/address.view-model';
+import { DeleteCaseByIdUseCase } from 'src/modules/case/use-cases/delete-case-by-id.use-case';
 
 @Controller('case')
 export class CaseController {
@@ -27,6 +36,7 @@ export class CaseController {
     private readonly getAllCaseClientsUseCase: GetAllCaseClientsUseCase,
     private readonly getCaseByIdUseCase: GetCaseByIdUseCase,
     private readonly getAddressByOwnerIdUseCase: GetAddressByOwnerIdUseCase,
+    private readonly deleteCaseByIdUseCase: DeleteCaseByIdUseCase,
   ) {}
 
   @Post()
@@ -103,6 +113,18 @@ export class CaseController {
         }),
       ),
     };
+  }
+
+  @Delete(':id')
+  async deleteCase(
+    @Param('id') caseId: string,
+    @Request() request: AuthenticatedRequestModel,
+  ) {
+    const { user } = request;
+    await this.deleteCaseByIdUseCase.execute({
+      caseId,
+      lawyerId: user.id,
+    });
   }
 
   @Get('all')
