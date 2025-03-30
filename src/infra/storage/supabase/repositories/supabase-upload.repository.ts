@@ -4,7 +4,7 @@ import { UploadRepository } from 'src/modules/upload/repositories/upload.reposit
 import { SupabaseService } from '../supabase.service';
 import { UploadResponseDto } from 'src/modules/upload/dtos/upload-response.dto';
 import { randomUUID } from 'crypto';
-import { DownloadFileResult } from 'src/modules/case-files/types/download-file-result.type';
+import { DownloadFileResult } from 'src/modules/case-file/types/download-file-result.type';
 
 @Injectable()
 export class SupabaseUploadRepository implements UploadRepository {

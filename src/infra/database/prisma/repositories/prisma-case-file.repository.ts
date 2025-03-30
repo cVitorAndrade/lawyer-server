@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { CaseFile } from 'src/modules/case-files/entities/case-file.entity';
-import { CaseFileRepository } from 'src/modules/case-files/repositories/case-file.repository';
+import { CaseFile } from 'src/modules/case-file/entities/case-file.entity';
+import { CaseFileRepository } from 'src/modules/case-file/repositories/case-file.repository';
 import { PrismaCaseFileMapper } from '../mappers/prisma-case-file.mapper';
 import { PrismaService } from '../prisma.service';
 

@@ -1,4 +1,4 @@
-import { CaseFile } from 'src/modules/case-files/entities/case-file.entity';
+import { CaseFile } from 'src/modules/case-file/entities/case-file.entity';
 
 export class CaseFileViewModel {
   static toHttp({

@@ -1,6 +1,6 @@
 import { UploadFileDto } from 'src/infra/http/modules/upload/dtos/upload-file.dto';
 import { UploadResponseDto } from '../dtos/upload-response.dto';
-import { DownloadFileResult } from 'src/modules/case-files/types/download-file-result.type';
+import { DownloadFileResult } from 'src/modules/case-file/types/download-file-result.type';
 
 export abstract class UploadRepository {
   abstract uploadFile(

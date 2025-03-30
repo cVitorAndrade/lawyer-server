@@ -4,7 +4,7 @@ import { LawyerRepository } from 'src/modules/lawyer/repositories/lawyer.reposit
 import { PrismaLawyerRepository } from './prisma/repositories/prisma-lawyer.repository';
 import { PrismaCaseRepository } from './prisma/repositories/prisma-case.repository';
 import { CaseRepository } from 'src/modules/case/repositories/case.repository';
-import { CaseFileRepository } from 'src/modules/case-files/repositories/case-file.repository';
+import { CaseFileRepository } from 'src/modules/case-file/repositories/case-file.repository';
 import { PrismaCaseFileRepository } from './prisma/repositories/prisma-case-file.repository';
 import { CaseLawyerRepository } from 'src/modules/case-lawyer/repositories/case-lawyer.repository';
 import { PrismaCaseLawyerRepository } from './prisma/repositories/prisma-case-lawyer.repository';

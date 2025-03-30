@@ -1,5 +1,5 @@
 import { CaseFiles as PrismaCaseFile } from '@prisma/client';
-import { CaseFile } from 'src/modules/case-files/entities/case-file.entity';
+import { CaseFile } from 'src/modules/case-file/entities/case-file.entity';
 
 export class PrismaCaseFileMapper {
   static toPrisma({

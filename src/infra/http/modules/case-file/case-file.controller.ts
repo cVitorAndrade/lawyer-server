@@ -1,8 +1,8 @@
 import { Controller, Get, Param, Res } from '@nestjs/common';
-import { GetAllCaseFilesUseCase } from 'src/modules/case-files/use-cases/get-all-case-files.use-case';
+import { GetAllCaseFilesUseCase } from 'src/modules/case-file/use-cases/get-all-case-files.use-case';
 import { CaseFileViewModel } from './view-model/case-file.view-model';
-import { GetCaseFileByIdUseCase } from 'src/modules/case-files/use-cases/get-case-file-by-id.use-case';
-import { DownloadCaseFileUseCase } from 'src/modules/case-files/use-cases/download-case-file.use-case';
+import { GetCaseFileByIdUseCase } from 'src/modules/case-file/use-cases/get-case-file-by-id.use-case';
+import { DownloadCaseFileUseCase } from 'src/modules/case-file/use-cases/download-case-file.use-case';
 import { Response } from 'express';
 import { GetLawyerByIdUseCase } from 'src/modules/lawyer/use-cases/get-lawyer-by-id.use-case';
 import { LawyerViewModel } from '../lawyer/view-model/lawyer.view-model';
