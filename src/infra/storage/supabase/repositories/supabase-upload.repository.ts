@@ -80,6 +80,34 @@ export class SupabaseUploadRepository implements UploadRepository {
     };
   }
 
+  async downloadAllFolderFiles(
+    bucket: string,
+    folder: string,
+  ): Promise<DownloadFileResult[]> {
+    const supabase = this.supabaseService.getClient;
+
+    const { data } = await supabase.storage.from(bucket).list(folder);
+
+    return Promise.all(
+      data.map(async ({ name }) => {
+        const { data: file } = await supabase.storage
+          .from(bucket)
+          .download(`${folder}/${name}`);
+
+        const arrayBuffer = await file.arrayBuffer();
+        const fileBuffer = Buffer.from(arrayBuffer);
+        const mimeType = file.type;
+        const filename = name;
+
+        return {
+          fileBuffer,
+          filename,
+          mimeType,
+        };
+      }),
+    );
+  }
+
   async deleteFolder(bucket: string, folder: string): Promise<void> {
     const supabase = this.supabaseService.getClient;
     const { data: files } = await supabase.storage.from(bucket).list(folder);
