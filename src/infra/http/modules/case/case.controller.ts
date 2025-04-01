@@ -59,6 +59,13 @@ export class CaseController {
     return CaseViewModel.toHttp(caseEntity);
   }
 
+  @Get('all')
+  async getAllCases() {
+    const cases = await this.getAllCasesUseCase.execute();
+
+    return cases.map((caseEntity) => CaseViewModel.toHttp(caseEntity));
+  }
+
   @Get()
   async getAllCasesByLawyerId(@Request() request: AuthenticatedRequestModel) {
     const { user } = request;
@@ -125,12 +132,5 @@ export class CaseController {
       caseId,
       lawyerId: user.id,
     });
-  }
-
-  @Get('all')
-  async getAllCases() {
-    const cases = await this.getAllCasesUseCase.execute();
-
-    return cases.map((caseEntity) => CaseViewModel.toHttp(caseEntity));
   }
 }
