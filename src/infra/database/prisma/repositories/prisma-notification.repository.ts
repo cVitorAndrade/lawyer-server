@@ -28,4 +28,15 @@ export class PrismaNotificationRepository implements NotificationRepository {
       PrismaNotificationMapper.toDomain(prismaNotification),
     );
   }
+
+  async findById(id: string): Promise<Notification | null> {
+    const prismaNotification =
+      await this.prismaService.notifications.findUnique({
+        where: { id },
+      });
+
+    if (!prismaNotification) return null;
+
+    return PrismaNotificationMapper.toDomain(prismaNotification);
+  }
 }
