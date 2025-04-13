@@ -23,7 +23,7 @@ export class UploadController {
     private readonly createDocumentModelFileUseCase: CreateDocumentModelFileUseCase,
   ) {}
 
-  @Post('cases/:id')
+  @Post('case/:id')
   @UseInterceptors(FileInterceptor('file'))
   async uploadCaseFile(
     @UploadedFile() file: UploadFileDto,
