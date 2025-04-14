@@ -35,6 +35,8 @@ export class AuthController {
       secure: true,
       sameSite: 'none',
       maxAge: tokenExpiresInMs,
+      domain: 'lawyer-app-server.onrender.com',
+      path: '/',
     });
 
     return { access_token };
