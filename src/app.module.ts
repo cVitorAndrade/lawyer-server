@@ -16,9 +16,13 @@ import { CaseClientModule } from './infra/http/modules/case-client/case-client.m
 import { AddressModule } from './infra/http/modules/address/address.module';
 import { DocumentModelModule } from './infra/http/modules/document-model/document-model.module';
 import { DocumentModelFileModule } from './infra/http/modules/document-model-file/document-model-file.module';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,
+    }),
     LawyerModule,
     DatabaseModule,
     AuthModule,
