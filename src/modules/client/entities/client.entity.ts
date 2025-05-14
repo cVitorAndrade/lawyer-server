@@ -6,6 +6,12 @@ interface ClientProps {
   name: string;
   email: string;
   telephone: string;
+  rg: string;
+  cpf: string;
+  motherName: string;
+  maritalStatus: string;
+  gender: string;
+  occupation: string;
   birthDate: Date;
   createdAt: Date;
   updatedAt: Date;
@@ -62,6 +68,54 @@ export class Client {
 
   set telephone(telephone: string) {
     this.props.telephone = telephone;
+  }
+
+  get rg(): string {
+    return this.props.rg;
+  }
+
+  set rg(rg: string) {
+    this.props.rg = rg;
+  }
+
+  get cpf(): string {
+    return this.props.cpf;
+  }
+
+  set cpf(cpf: string) {
+    this.props.cpf = cpf;
+  }
+
+  get motherName(): string {
+    return this.props.motherName;
+  }
+
+  set motherName(motherName: string) {
+    this.props.motherName = motherName;
+  }
+
+  get maritalStatus(): string {
+    return this.props.maritalStatus;
+  }
+
+  set maritalStatus(maritalStatus: string) {
+    this.props.maritalStatus = maritalStatus;
+  }
+
+  get gender(): string {
+    return this.props.gender;
+  }
+
+  set gender(gender: string) {
+    this.props.gender = gender;
+  }
+
+  get occupation(): string {
+    return this.props.occupation;
+  }
+
+  set occupation(occupation: string) {
+    this.props.occupation = occupation;
   }
 
   get birthDate(): Date {

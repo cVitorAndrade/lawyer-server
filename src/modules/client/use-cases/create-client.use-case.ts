@@ -7,6 +7,12 @@ interface CreateClientRequest {
   name: string;
   email: string;
   telephone: string;
+  rg: string;
+  cpf: string;
+  maritalStatus: string;
+  gender: string;
+  motherName: string;
+  occupation: string;
   birthDate: Date;
 }
 

@@ -14,14 +14,10 @@ export class ClientController {
     @Body() body: CreateClientDto,
   ) {
     const { user } = request;
-    const { name, email, birthDate, telephone } = body;
 
     const client = await this.createClientUseCase.execute({
       createdById: user.id,
-      name,
-      email,
-      birthDate,
-      telephone,
+      ...body,
     });
 
     return ClientViewModel.toHttp(client);

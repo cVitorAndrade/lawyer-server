@@ -117,16 +117,22 @@ model Invites {
 }
 
 model Clients {
-  id          String        @id
-  createdBy   Lawyers       @relation(fields: [createdById], references: [id])
-  createdById String
-  name        String
-  email       String        @unique
-  telephone   String
-  birthDate   DateTime
-  createdAt   DateTime
-  updatedAt   DateTime
-  CaseClients CaseClients[]
+  id            String        @id
+  createdBy     Lawyers       @relation(fields: [createdById], references: [id])
+  createdById   String
+  name          String
+  email         String        @unique
+  telephone     String
+  rg            String
+  cpf           String
+  motherName    String
+  maritalStatus String
+  gender        String
+  occupation    String
+  birthDate     DateTime
+  createdAt     DateTime
+  updatedAt     DateTime
+  CaseClients   CaseClients[]
 }
 
 model Addresses {

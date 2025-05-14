@@ -15,6 +15,30 @@ export class CreateClientDto {
   @IsNotEmpty()
   telephone: string;
 
+  @IsString()
+  @IsNotEmpty()
+  rg: string;
+
+  @IsString()
+  @IsNotEmpty()
+  cpf: string;
+
+  @IsString()
+  @IsNotEmpty()
+  maritalStatus: string;
+
+  @IsString()
+  @IsNotEmpty()
+  gender: string;
+
+  @IsString()
+  @IsNotEmpty()
+  motherName: string;
+
+  @IsString()
+  @IsNotEmpty()
+  occupation: string;
+
   @IsDate()
   @IsNotEmpty()
   @Type(() => Date)
