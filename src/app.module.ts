@@ -17,6 +17,7 @@ import { AddressModule } from './infra/http/modules/address/address.module';
 import { DocumentModelModule } from './infra/http/modules/document-model/document-model.module';
 import { DocumentModelFileModule } from './infra/http/modules/document-model-file/document-model-file.module';
 import { ConfigModule } from '@nestjs/config';
+import { DependentModule } from './infra/http/modules/dependent/dependent.module';
 
 @Module({
   imports: [
@@ -38,6 +39,7 @@ import { ConfigModule } from '@nestjs/config';
     AddressModule,
     DocumentModelModule,
     DocumentModelFileModule,
+    DependentModule,
   ],
   providers: [
     {
