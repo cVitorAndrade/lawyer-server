@@ -22,6 +22,8 @@ import { DocumentModelRepository } from 'src/modules/document-model/repositories
 import { PrismaDocumentModelRepository } from './prisma/repositories/prisma-document-model.repository';
 import { DocumentModelFileRepository } from 'src/modules/document-model-file/repositories/document-model-file.repository';
 import { PrismaDocumentModelFileRepository } from './prisma/repositories/prisma-document-model-file.repository';
+import { PrismaDependentRepository } from './prisma/repositories/prisma-dependent.repository';
+import { DependentRepository } from 'src/modules/dependent/repositories/dependent.repository';
 
 @Module({
   providers: [
@@ -70,6 +72,10 @@ import { PrismaDocumentModelFileRepository } from './prisma/repositories/prisma-
       provide: DocumentModelFileRepository,
       useClass: PrismaDocumentModelFileRepository,
     },
+    {
+      provide: DependentRepository,
+      useClass: PrismaDependentRepository,
+    },
   ],
   exports: [
     LawyerRepository,
@@ -83,6 +89,7 @@ import { PrismaDocumentModelFileRepository } from './prisma/repositories/prisma-
     AddressRepository,
     DocumentModelRepository,
     DocumentModelFileRepository,
+    DependentRepository,
   ],
 })
 export class DatabaseModule {}
