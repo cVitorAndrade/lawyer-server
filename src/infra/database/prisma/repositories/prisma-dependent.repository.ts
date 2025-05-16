@@ -14,4 +14,14 @@ export class PrismaDependentRepository implements DependentRepository {
       data: prismaDependent,
     });
   }
+
+  async findAllByClientId(clientId: string): Promise<Dependent[]> {
+    const prismaDependents = await this.prismaService.dependents.findMany({
+      where: {
+        clientId,
+      },
+    });
+
+    return prismaDependents.map(PrismaDependentMapper.toDomain);
+  }
 }
