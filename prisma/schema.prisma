@@ -133,6 +133,7 @@ model Clients {
   createdAt     DateTime
   updatedAt     DateTime
   CaseClients   CaseClients[]
+  Dependents    Dependents[]
 }
 
 model Addresses {
@@ -183,4 +184,22 @@ model DocumentModelFiles {
   originalname    String
   size            Int
   createdAt       DateTime
+}
+
+model Dependents {
+  id            String   @id
+  client        Clients  @relation(fields: [clientId], references: [id])
+  clientId      String
+  name          String
+  email         String   @unique
+  telephone     String
+  rg            String
+  cpf           String
+  motherName    String
+  maritalStatus String
+  gender        String
+  occupation    String
+  birthDate     DateTime
+  createdAt     DateTime
+  updatedAt     DateTime
 }
