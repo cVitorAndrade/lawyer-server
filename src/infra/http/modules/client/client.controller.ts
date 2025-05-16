@@ -5,6 +5,9 @@ import { CreateClientUseCase } from 'src/modules/client/use-cases/create-client.
 import { ClientViewModel } from './view-model/client.view-model';
 import { GetClientsByLawyerIdUseCase } from 'src/modules/client/use-cases/get-clients-by-lawyer-id.use-case';
 import { GetCasesByClientIdUseCase } from 'src/modules/case-client/use-cases/get-cases-by-client-id.use-case';
+import { GetDependentsByClientIdUseCase } from 'src/modules/dependent/use-cases/get-dependents-by-client-id.use-case';
+import { DependentViewModel } from '../dependent/view-model/dependent.view-model';
+import { CaseViewModel } from '../case/view-model/case.view-model';
 
 @Controller('client')
 export class ClientController {
@@ -12,6 +15,7 @@ export class ClientController {
     private readonly createClientUseCase: CreateClientUseCase,
     private readonly getClientsByLawyerIdUseCase: GetClientsByLawyerIdUseCase,
     private readonly getCasesByClientIdUseCase: GetCasesByClientIdUseCase,
+    private readonly getDependentsByClientIdUseCase: GetDependentsByClientIdUseCase,
   ) {}
 
   @Post()
@@ -39,13 +43,17 @@ export class ClientController {
 
     return Promise.all(
       clients.map(async (client) => {
-        const [cases] = await Promise.all([
-          this.getCasesByClientIdUseCase.execute({ clientId: client.id }),
+        const clientId = client.id;
+
+        const [cases, dependents] = await Promise.all([
+          this.getCasesByClientIdUseCase.execute({ clientId }),
+          this.getDependentsByClientIdUseCase.execute({ clientId }),
         ]);
 
         return {
           ...ClientViewModel.toHttp(client),
-          cases,
+          cases: cases.map(CaseViewModel.toHttp),
+          dependents: dependents.map(DependentViewModel.toHttp),
         };
       }),
     );

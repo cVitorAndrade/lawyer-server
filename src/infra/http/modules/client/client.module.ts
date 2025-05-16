@@ -4,12 +4,14 @@ import { ClientController } from './client.controller';
 import { DatabaseModule } from 'src/infra/database/database.module';
 import { GetClientsByLawyerIdUseCase } from 'src/modules/client/use-cases/get-clients-by-lawyer-id.use-case';
 import { GetCasesByClientIdUseCase } from 'src/modules/case-client/use-cases/get-cases-by-client-id.use-case';
+import { GetDependentsByClientIdUseCase } from 'src/modules/dependent/use-cases/get-dependents-by-client-id.use-case';
 
 @Module({
   providers: [
     CreateClientUseCase,
     GetClientsByLawyerIdUseCase,
     GetCasesByClientIdUseCase,
+    GetDependentsByClientIdUseCase,
   ],
   controllers: [ClientController],
   imports: [DatabaseModule],
