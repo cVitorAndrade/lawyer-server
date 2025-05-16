@@ -5,6 +5,8 @@ import { CaseClient } from 'src/modules/case-client/entities/case-client.entity'
 import { PrismaCaseClientMapper } from '../mappers/prisma-case-client.mapper';
 import { Client } from 'src/modules/client/entities/client.entity';
 import { PrismaClientMapper } from '../mappers/prisma-client.mapper';
+import { Case } from 'src/modules/case/entities/case.entity';
+import { PrismaCaseMapper } from '../mappers/prisma-case.mapper';
 
 @Injectable()
 export class PrismaCaseClientRepository implements CaseClientRepository {
@@ -25,6 +27,17 @@ export class PrismaCaseClientRepository implements CaseClientRepository {
 
     return prismaCaseClients.map(({ client }) =>
       PrismaClientMapper.toDomain(client),
+    );
+  }
+
+  async findAllCasesByClientId(clientId: string): Promise<Case[]> {
+    const prismaCaseClients = await this.prismaService.caseClients.findMany({
+      where: { clientId },
+      include: { case: true },
+    });
+
+    return prismaCaseClients.map(({ case: caseEntity }) =>
+      PrismaCaseMapper.toDomain(caseEntity),
     );
   }
 }

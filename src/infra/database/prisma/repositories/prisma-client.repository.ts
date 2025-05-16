@@ -14,4 +14,14 @@ export class PrismaClientRepository implements ClientRepository {
       data: prismaClient,
     });
   }
+
+  async findAllByLawyerId(lawyerId: string): Promise<Client[]> {
+    const prismaClients = await this.prismaService.clients.findMany({
+      where: {
+        createdById: lawyerId,
+      },
+    });
+
+    return prismaClients.map(PrismaClientMapper.toDomain);
+  }
 }
