@@ -14,6 +14,8 @@ interface CreateDependentRequest {
   gender: string;
   occupation: string;
   birthDate: Date;
+  observation: string;
+  relationship: string;
 }
 
 @Injectable()

@@ -43,6 +43,14 @@ export class CreateDependentDto {
   @IsNotEmpty()
   occupation: string;
 
+  @IsString()
+  @IsNotEmpty()
+  relationship: string;
+
+  @IsString()
+  @IsNotEmpty()
+  observation: string;
+
   @IsDate()
   @IsNotEmpty()
   @Type(() => Date)

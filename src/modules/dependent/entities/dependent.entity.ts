@@ -13,6 +13,8 @@ interface DependentProps {
   gender: string;
   occupation: string;
   birthDate: Date;
+  relationship: string;
+  observation: string;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -124,6 +126,22 @@ export class Dependent {
 
   set birthDate(birthDate: Date) {
     this.props.birthDate = birthDate;
+  }
+
+  get observation(): string {
+    return this.props.observation;
+  }
+
+  set observation(observation: string) {
+    this.props.observation = observation;
+  }
+
+  get relationship(): string {
+    return this.props.relationship;
+  }
+
+  set relationship(relationship: string) {
+    this.props.relationship = relationship;
   }
 
   get createdAt(): Date {

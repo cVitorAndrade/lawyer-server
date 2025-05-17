@@ -16,6 +16,8 @@ export class PrismaDependentMapper {
     occupation,
     rg,
     telephone,
+    observation,
+    relationship,
     updatedAt,
   }: Dependent): PrismaDepedent {
     return {
@@ -32,6 +34,8 @@ export class PrismaDependentMapper {
       occupation,
       rg,
       telephone,
+      observation,
+      relationship,
       updatedAt,
     };
   }
@@ -49,6 +53,8 @@ export class PrismaDependentMapper {
     name,
     occupation,
     rg,
+    observation,
+    relationship,
     telephone,
     updatedAt,
   }: PrismaDepedent): Dependent {
@@ -66,6 +72,8 @@ export class PrismaDependentMapper {
         occupation,
         rg,
         telephone,
+        observation,
+        relationship,
         updatedAt,
       },
       id,
