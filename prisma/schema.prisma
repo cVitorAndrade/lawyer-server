@@ -199,6 +199,8 @@ model Dependents {
   maritalStatus String
   gender        String
   occupation    String
+  relationship  String
+  observation   String
   birthDate     DateTime
   createdAt     DateTime
   updatedAt     DateTime
