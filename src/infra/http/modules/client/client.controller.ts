@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post, Request } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Request } from '@nestjs/common';
 import { AuthenticatedRequestModel } from '../auth/models/authenticated-request.model';
 import { CreateClientDto } from './dtos/create-client.dto';
 import { CreateClientUseCase } from 'src/modules/client/use-cases/create-client.use-case';
@@ -8,6 +8,9 @@ import { GetCasesByClientIdUseCase } from 'src/modules/case-client/use-cases/get
 import { GetDependentsByClientIdUseCase } from 'src/modules/dependent/use-cases/get-dependents-by-client-id.use-case';
 import { DependentViewModel } from '../dependent/view-model/dependent.view-model';
 import { CaseViewModel } from '../case/view-model/case.view-model';
+import { GetClientByIdUseCase } from 'src/modules/client/use-cases/get-client-by-id.use-case';
+import { GetAddressByOwnerIdUseCase } from 'src/modules/address/use-cases/get-address-by-owner-id.use-case';
+import { AddressViewModel } from '../address/view-model/address.view-model';
 
 @Controller('client')
 export class ClientController {
@@ -16,6 +19,8 @@ export class ClientController {
     private readonly getClientsByLawyerIdUseCase: GetClientsByLawyerIdUseCase,
     private readonly getCasesByClientIdUseCase: GetCasesByClientIdUseCase,
     private readonly getDependentsByClientIdUseCase: GetDependentsByClientIdUseCase,
+    private readonly getClientByIdUseCase: GetClientByIdUseCase,
+    private readonly getAddressByOwnerIdUseCase: GetAddressByOwnerIdUseCase,
   ) {}
 
   @Post()
@@ -57,5 +62,23 @@ export class ClientController {
         };
       }),
     );
+  }
+
+  @Get(':id')
+  async getClientById(@Param('id') clientId: string) {
+    const client = await this.getClientByIdUseCase.execute({ clientId });
+
+    const [cases, dependents, address] = await Promise.all([
+      this.getCasesByClientIdUseCase.execute({ clientId }),
+      this.getDependentsByClientIdUseCase.execute({ clientId }),
+      this.getAddressByOwnerIdUseCase.execute({ ownerId: clientId }),
+    ]);
+
+    return {
+      ...ClientViewModel.toHttp(client),
+      cases: cases.map(CaseViewModel.toHttp),
+      dependents: dependents.map(DependentViewModel.toHttp),
+      address: AddressViewModel.toHttp(address),
+    };
   }
 }

@@ -24,4 +24,12 @@ export class PrismaClientRepository implements ClientRepository {
 
     return prismaClients.map(PrismaClientMapper.toDomain);
   }
+
+  async findById(id: string): Promise<Client | null> {
+    const prismaClient = await this.prismaService.clients.findUnique({
+      where: { id },
+    });
+    if (!prismaClient) return null;
+    return PrismaClientMapper.toDomain(prismaClient);
+  }
 }
