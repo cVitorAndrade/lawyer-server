@@ -14,6 +14,8 @@ export class DependentViewModel {
     name,
     occupation,
     rg,
+    observation,
+    relationship,
     telephone,
     updatedAt,
   }: Dependent) {
@@ -30,6 +32,8 @@ export class DependentViewModel {
       name,
       occupation,
       rg,
+      observation,
+      relationship,
       telephone,
       updatedAt,
     };
