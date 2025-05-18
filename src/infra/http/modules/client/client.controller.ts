@@ -77,7 +77,18 @@ export class ClientController {
     return {
       ...ClientViewModel.toHttp(client),
       cases: cases.map(CaseViewModel.toHttp),
-      dependents: dependents.map(DependentViewModel.toHttp),
+      dependents: await Promise.all(
+        dependents.map(async (dependent) => {
+          const dependentAddress =
+            await this.getAddressByOwnerIdUseCase.execute({
+              ownerId: dependent.id,
+            });
+          return {
+            ...DependentViewModel.toHttp(dependent),
+            address: AddressViewModel.toHttp(dependentAddress),
+          };
+        }),
+      ),
       address: AddressViewModel.toHttp(address),
     };
   }
