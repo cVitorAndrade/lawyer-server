@@ -31,6 +31,7 @@ model Lawyers {
   Clients            Clients[]
   DocumentModel      DocumentModels[]
   DocumentModelFiles DocumentModelFiles[]
+  ClientFiles         ClientFiles[]
 }
 
 enum CaseType {
@@ -134,6 +135,7 @@ model Clients {
   updatedAt     DateTime
   CaseClients   CaseClients[]
   Dependents    Dependents[]
+  ClientFiles    ClientFiles[]
 }
 
 model Addresses {
@@ -204,4 +206,18 @@ model Dependents {
   birthDate     DateTime
   createdAt     DateTime
   updatedAt     DateTime
+}
+
+model ClientFiles {
+  id           String   @id
+  client       Clients  @relation(fields: [clientId], references: [id])
+  clientId     String
+  uploadedBy   Lawyers  @relation(fields: [uploadedById], references: [id])
+  uploadedById String
+  path         String   @unique
+  fullpath     String   @unique
+  mimetype     String
+  originalname String
+  size         Int
+  createdAt    DateTime
 }
