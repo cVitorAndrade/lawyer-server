@@ -50,15 +50,28 @@ export class ClientController {
       clients.map(async (client) => {
         const clientId = client.id;
 
-        const [cases, dependents] = await Promise.all([
+        const [cases, dependents, address] = await Promise.all([
           this.getCasesByClientIdUseCase.execute({ clientId }),
           this.getDependentsByClientIdUseCase.execute({ clientId }),
+          this.getAddressByOwnerIdUseCase.execute({ ownerId: clientId }),
         ]);
 
         return {
           ...ClientViewModel.toHttp(client),
           cases: cases.map(CaseViewModel.toHttp),
-          dependents: dependents.map(DependentViewModel.toHttp),
+          dependents: await Promise.all(
+            dependents.map(async (dependent) => {
+              const dependentAddress =
+                await this.getAddressByOwnerIdUseCase.execute({
+                  ownerId: dependent.id,
+                });
+              return {
+                ...DependentViewModel.toHttp(dependent),
+                address: AddressViewModel.toHttp(dependentAddress),
+              };
+            }),
+          ),
+          address: AddressViewModel.toHttp(address),
         };
       }),
     );
