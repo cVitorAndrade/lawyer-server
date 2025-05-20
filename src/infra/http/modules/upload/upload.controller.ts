@@ -14,6 +14,8 @@ import { AuthenticatedRequestModel } from '../auth/models/authenticated-request.
 import { CaseFileViewModel } from '../case-file/view-model/case-file.view-model';
 import { CreateDocumentModelFileUseCase } from 'src/modules/document-model-file/use-cases/create-document-model-file.use-case';
 import { DocumentModelFileViewModel } from '../document-model-file/view-model/document-model-file.view-model';
+import { CreateClientFileUseCase } from 'src/modules/client-file/use-cases/create-client-file.use-case';
+import { ClientFileViewModel } from '../client-file/view-model/client-file.view-model';
 
 @Controller('upload')
 export class UploadController {
@@ -21,6 +23,7 @@ export class UploadController {
     private readonly uploadFileUseCase: UploadFileUseCase,
     private readonly createCaseFileUseCase: CreateCaseFileUseCase,
     private readonly createDocumentModelFileUseCase: CreateDocumentModelFileUseCase,
+    private readonly createClientFileUseCase: CreateClientFileUseCase,
   ) {}
 
   @Post('case/:id')
@@ -74,5 +77,29 @@ export class UploadController {
     );
 
     return DocumentModelFileViewModel.toHttp(documentModelFile);
+  }
+
+  @Post('client/:id')
+  @UseInterceptors(FileInterceptor('file'))
+  async uploadClientFile(
+    @UploadedFile() file: UploadFileDto,
+    @Param('id') clientId: string,
+    @Request() request: AuthenticatedRequestModel,
+  ) {
+    const { user } = request;
+    const path = `clients/${clientId}`;
+    const uploadedFile = await this.uploadFileUseCase.execute({ file, path });
+
+    const clientFile = await this.createClientFileUseCase.execute({
+      clientId,
+      uploadedById: user.id,
+      path: `${clientId}/${uploadedFile.path}`,
+      fullpath: uploadedFile.fullPath,
+      mimetype: file.mimetype,
+      originalname: file.originalname,
+      size: file.size,
+    });
+
+    return ClientFileViewModel.toHttp(clientFile);
   }
 }
